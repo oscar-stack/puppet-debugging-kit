@@ -1,0 +1,27 @@
+---
+roles:
+  base:
+    private_networks:
+      - {ip: '0.0.0.0', auto_network: true}
+    provisioners:
+      - {type: hosts}
+
+  el-stop-firewall:
+    provisioners:
+      - {type: shell, inline: 'service iptables stop'}
+
+  pe-301-master:
+    provider:
+      type: virtualbox
+      customize:
+        - [modifyvm, !ruby/sym id, '--memory', 1024]
+    provisioners:
+      - {type: pe_bootstrap, role: !ruby/sym master}
+
+  pe-forward-console:
+    forwarded_ports:
+      - {guest: 443, host: 4443, auto_correct: true}
+
+  pe-301-agent:
+    provisioners:
+      - {type: pe_bootstrap, master: 'pe-301-master.puppetdebug.vlan'}
