@@ -1,2 +1,5 @@
+.bundle
 .pe_build
 .vagrant
+bin
+vendor
