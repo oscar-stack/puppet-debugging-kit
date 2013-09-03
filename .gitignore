@@ -1,5 +1,6 @@
 .bundle
 .pe_build
 .vagrant
+Gemfile.local
 bin
 vendor

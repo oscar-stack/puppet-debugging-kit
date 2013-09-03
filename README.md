@@ -31,6 +31,19 @@ The sandboxed version of vagrant can now be accessed through `bin/vagrant`.
 I.E. to bring up a box, one would invoke `bin/vagrant up pe-301-master`.
 The version of Vagrant operating out of the sandbox uses `/usr/local/var/vagrant/puppet-debugging-kit` as its `VAGRANT_HOME` to avoid clobbering legacy data in `~/.vagrant.d`.
 
+#### Sandbox Customization
+
+The sandbox can be customized through by creating a `Gemfile.local`.
+Things that can be set inside this file include:
+
+  - The `VAGRANT_HOME`, by assigning a value to `ENV['VAGRANT_HOME']`.
+
+  - Additional gems, through the use of `gem` directives.
+
+  - Additional Vagrant Plugins, by placing `gem` directives inside of a `group :vagrant_plugins do` block.
+
+Full documentation for the contents of a Gemfile can be found on [the Bundler website](http://bundler.io/v1.3/gemfile.html).
+
 ---
 <p align="center">
   <img src="http://i.imgur.com/TFTT0Jh.png" />
