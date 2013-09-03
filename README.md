@@ -32,4 +32,6 @@ I.E. to bring up a box, one would invoke `bin/vagrant up pe-301-master`.
 The version of Vagrant operating out of the sandbox uses `/usr/local/var/vagrant/puppet-debugging-kit` as its `VAGRANT_HOME` to avoid clobbering legacy data in `~/.vagrant.d`.
 
 ---
-![debug kit](http://i.imgur.com/TFTT0Jh.png)
+<p align="center">
+  <img src="http://i.imgur.com/TFTT0Jh.png" />
+</p>
