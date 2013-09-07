@@ -14,7 +14,7 @@ end
 # storage so that the old one is left alone.
 ENV['VAGRANT_HOME'] = '/usr/local/var/vagrant/puppet-debugging-kit' if ENV['VAGRANT_HOME'].nil?
 
-gem 'vagrant', :github => 'mitchellh/vagrant', :tag => 'v1.2.7'
+gem 'vagrant', :github => 'mitchellh/vagrant', :tag => 'v1.3.1'
 
 # Gems listed in this group are automatically loaded by the Vagrantfile which
 # simulates the action of `vagrant plugin`, which is inactive when running
