@@ -8,7 +8,7 @@ roles:
 
   el-stop-firewall:
     provisioners:
-      - {type: shell, inline: 'service iptables stop'}
+      - {type: shell, inline: '/opt/puppet/bin/puppet resource service iptables ensure=stopped enable=false'}
 
   pe-301-master:
     provider:

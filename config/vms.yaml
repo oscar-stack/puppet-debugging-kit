@@ -5,14 +5,14 @@ vms:
     box: centos-64-x64-vbox4210-nocm
     roles:
       - pe-forward-console
-      - pe-301-master
       - el-stop-firewall
+      - pe-301-master
       - base
 
   - name: pe-301-agent-centos64
     box: centos-64-x64-vbox4210-nocm
     hostname: pe-301-agent-centos64.puppetdebug.vlan
     roles:
-      - pe-301-agent
       - el-stop-firewall
+      - pe-301-agent
       - base
