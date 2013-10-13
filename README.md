@@ -43,6 +43,24 @@ Things that can be set inside this file include:
 
 Full documentation for the contents of a Gemfile can be found on [the Bundler website](http://bundler.io/v1.3/gemfile.html).
 
+## Usage
+
+The debugging kit can be thought of as a library of configuration and data for Oscar.
+Data is loaded from two sets of YAML files under the `config` directory:
+
+```
+config
+├── debugging-kit
+│   └── *.yaml     # <-- The debugging kit library
+└── *.yaml         # <-- User-specific customizations
+```
+
+Everything under `config/debugging-kit` is loaded first.
+In order to avoid merge conflicts when the library is updated, these files should never be edited unless you plan to submit your changes as a pull request.
+
+The contents of `config/*.yaml` are loaded next and can be used to extend or override anything provided by `config/debugging-kit`.
+These files are where user-specific customizations should go.
+
 ---
 <p align="center">
   <img src="http://i.imgur.com/TFTT0Jh.png" />
