@@ -3,4 +3,5 @@
 .vagrant
 Gemfile.local
 bin
+config/*.yaml
 vendor

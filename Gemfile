@@ -20,6 +20,10 @@ gem 'vagrant', :github => 'mitchellh/vagrant', :tag => 'v1.3.4'
 # simulates the action of `vagrant plugin`, which is inactive when running
 # under Bundler.
 group :vagrant_plugins do
+  gem 'vagrant-hosts'
+  gem 'vagrant-auto_network'
+  gem 'vagrant-pe_build'
+  gem 'vagrant-config_builder'
   gem 'oscar'
   gem 'sahara'
 end
