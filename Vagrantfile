@@ -8,15 +8,18 @@ if defined? Bundler
   # enabled.
   Bundler.require :vagrant_plugins
 else
-  require 'vagrant-hosts'
-  require 'vagrant-auto_network'
-  require 'vagrant-pe_build'
-  require 'vagrant-config_builder'
+  begin
+    require 'vagrant-hosts'
+    require 'vagrant-auto_network'
+    require 'vagrant-pe_build'
+    require 'vagrant-config_builder'
+  rescue LoadError
+  end
 end
 
-# Don't do anything if Oscar is not loaded.
-if defined? Oscar
-  Vagrant.configure('2') do |config|
+Vagrant.configure('2') do |config|
+  # Don't do anything if ConfigBuilder is not loaded.
+  if defined? ConfigBuilder
     ConfigBuilder::ExtensionHandler.new.load_from_plugins
 
     # Load the debugging kit configs and then override with any user-specific
@@ -28,5 +31,7 @@ if defined? Oscar
     # Generate the model and use it to create Vagrant configuartion
     model = ConfigBuilder::Model.generate data
     model.eval_models config
+  else
+    $stderr.puts "WARNING:  Unable to load config. Required plugins are missing.\n\n"
   end
 end
