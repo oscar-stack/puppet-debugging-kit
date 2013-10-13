@@ -14,18 +14,17 @@ If the system-wide version of Vagrant is 1.0.7 or earlier, the debugging kit pro
 This is recommended for users who are running Vagrant 1.1 or newer.
 Users with older Vagrant installs who do not wish to upgrade should consider the "Sandboxed Setup" detailed below.
 
-Set up consists of installing the `oscar` and `sahara` plugins:
+A Rake task is provided which installs the necessary Vagrant plugins:
 
-    vagrant plugin install oscar
-    vagrant plugin install sahara
+    rake setup:standard
 
 ### Sandboxed Setup
 
 This option is provided for those users with a legacy Vagrant installation (1.0.7 or earlier) that needs to remain functional for other projects.
 
-Setup consists of initializing the Bundler environment:
+A Rake task is provided which sets up the bundler environment:
 
-    bundle install --binstubs --path=vendor
+    rake setup:sandbox
 
 The sandboxed version of vagrant can now be accessed through `bin/vagrant`.
 I.E. to bring up a box, one would invoke `bin/vagrant up pe-301-master`.
