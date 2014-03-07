@@ -25,5 +25,5 @@ group :vagrant_plugins do
   gem 'vagrant-pe_build'
   gem 'vagrant-config_builder', '>= 0.7.0' # Version required for deep_merge
   gem 'oscar'
-  gem 'sahara'
+  gem 'vagrant-vbox-snapshot'
 end
