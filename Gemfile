@@ -23,7 +23,7 @@ group :vagrant_plugins do
   gem 'vagrant-hosts'
   gem 'vagrant-auto_network'
   gem 'vagrant-pe_build'
-  gem 'vagrant-config_builder'
+  gem 'vagrant-config_builder', '>= 0.7.0' # Version required for deep_merge
   gem 'oscar'
   gem 'sahara'
 end
