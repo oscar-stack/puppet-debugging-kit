@@ -8,30 +8,19 @@ if defined? Bundler
   # enabled.
   Bundler.require :vagrant_plugins
 else
-  begin
-    require 'vagrant-hosts'
-    require 'vagrant-auto_network'
-    require 'vagrant-pe_build'
-    require 'vagrant-config_builder'
-  rescue LoadError
-  end
+  Vagrant.require_plugin('oscar')
 end
 
-Vagrant.configure('2') do |config|
-  # Don't do anything if ConfigBuilder is not loaded.
-  if defined? ConfigBuilder
-    ConfigBuilder::ExtensionHandler.new.load_from_plugins
+if defined? Oscar
+  vagrant_dir = File.dirname(__FILE__)
+  # Oscar will load all YAML files in each directory listed below. Directories
+  # that appear later in the array will append or overwrite config loaded from
+  # directories that appear first in the array. The deep_merge gem is used to
+  # effect this behavior.
+  config_dirs = %w[
+    data/puppet-debugging-kit
+    config
+  ].map{|d| File.expand_path(d, vagrant_dir)}
 
-    # Load the debugging kit configs and then override with any user-specific
-    # customizations.
-    data = ConfigBuilder::Loader.generate(:yaml, :yamldir, File.expand_path('../config/debugging-kit', __FILE__))
-    data.merge! ConfigBuilder::Loader.generate(:yaml, :yamldir, File.expand_path('../config', __FILE__))
-    data = ConfigBuilder::FilterStack.new.filter data
-
-    # Generate the model and use it to create Vagrant configuartion
-    model = ConfigBuilder::Model.generate data
-    model.eval_models config
-  else
-    $stderr.puts "WARNING:  Unable to load config. Required plugins are missing.\n\n"
-  end
+  Vagrant.configure('2', &Oscar.run(config_dirs))
 end
