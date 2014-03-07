@@ -2,6 +2,13 @@
 # Boxes from http://puppet-vagrant-boxes.puppetlabs.com/
 # Updated: 2013-08-08
 boxes:
+  # Built against VirtualBox 4.3.6
+  'centos-65-x64-virtualbox-nocm': 'http://puppet-vagrant-boxes.puppetlabs.com/centos-65-x64-virtualbox-nocm.box'
+  'centos-510-x64-virtualbox-nocm': 'http://puppet-vagrant-boxes.puppetlabs.com/centos-510-x64-virtualbox-nocm.box'
+  'debian-73-x64-virtualbox-nocm': 'http://puppet-vagrant-boxes.puppetlabs.com/debian-73-x64-virtualbox-nocm.box'
+  'ubuntu-1310-x64-virtualbox-nocm': 'http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-1310-x64-virtualbox-nocm.box'
+
+  # Built against VirtualBox 4.2.10 --- still work reliably with 4.3.x
   'fedora-18-x64-vbox4210-nocm': 'http://puppet-vagrant-boxes.puppetlabs.com/fedora-18-x64-vbox4210-nocm.box'
   'centos-64-x64-vbox4210-nocm': 'http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210-nocm.box'
   'centos-59-x64-vbox4210-nocm': 'http://puppet-vagrant-boxes.puppetlabs.com/centos-59-x64-vbox4210-nocm.box'
