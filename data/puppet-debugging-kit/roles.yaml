@@ -1,5 +1,8 @@
 ---
 roles:
+
+  # General Purpose Roles
+  # =====================
   base:
     private_networks:
       - {ip: '0.0.0.0', auto_network: true}
@@ -8,20 +11,62 @@ roles:
 
   el-stop-firewall:
     provisioners:
-      - {type: shell, inline: '/opt/puppet/bin/puppet resource service iptables ensure=stopped enable=false'}
+      - {type: shell, inline: 'service iptables stop'}
+      - {type: shell, inline: 'chkconfig iptables off'}
 
-  pe-301-master:
+  1gb-memory:
     provider:
       type: virtualbox
       customize:
         - [modifyvm, !ruby/sym id, '--memory', 1024]
-    provisioners:
-      - {type: pe_bootstrap, role: !ruby/sym master}
 
+  2gb-memory:
+    provider:
+      type: virtualbox
+      customize:
+        - [modifyvm, !ruby/sym id, '--memory', 2048]
+
+  4gb-memory:
+    provider:
+      type: virtualbox
+      customize:
+        - [modifyvm, !ruby/sym id, '--memory', 4096]
+
+
+  # PE Specific Roles
+  # =================
   pe-forward-console:
     forwarded_ports:
       - {guest: 443, host: 4443, auto_correct: true}
 
+  pe-320-agent:
+    provisioners:
+      - {type: pe_bootstrap, master: 'pe-320-master.puppetdebug.vlan', version: '3.2.0'}
+
+  pe-313-agent:
+    provisioners:
+      - {type: pe_bootstrap, master: 'pe-313-master.puppetdebug.vlan', version: '3.1.3'}
+
   pe-301-agent:
     provisioners:
-      - {type: pe_bootstrap, master: 'pe-301-master.puppetdebug.vlan'}
+      - {type: pe_bootstrap, master: 'pe-301-master.puppetdebug.vlan', version: '3.0.1'}
+
+  pe-285-agent:
+    provisioners:
+      - {type: pe_bootstrap, master: 'pe-285-master.puppetdebug.vlan', version: '2.8.5'}
+
+  pe-272-agent:
+    provisioners:
+      - {type: pe_bootstrap, master: 'pe-272-master.puppetdebug.vlan', version: '2.7.2'}
+
+  pe-261-agent:
+    provisioners:
+      - {type: pe_bootstrap, master: 'pe-261-master.puppetdebug.vlan', version: '2.6.1'}
+
+  pe-253-agent:
+    provisioners:
+      - {type: pe_bootstrap, master: 'pe-253-master.puppetdebug.vlan', version: '2.5.3'}
+
+  pe-203-agent:
+    provisioners:
+      - {type: pe_bootstrap, master: 'pe-203-master.puppetdebug.vlan', version: '2.0.3'}

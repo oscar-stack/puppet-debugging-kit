@@ -1,18 +1,156 @@
 ---
 vms:
+
+  - name: pe-320-master
+    hostname: pe-320-master.puppetdebug.vlan
+    box: centos-65-x64-virtualbox-nocm
+    roles:
+      - pe-forward-console
+      - el-stop-firewall
+      - 4gb-memory
+      - base
+    provisioners:
+      - {type: pe_bootstrap, role: !ruby/sym master, version: '3.2.0'}
+
+  - name: pe-320-agent
+    box: centos-65-x64-virtualbox-nocm
+    hostname: pe-320-agent-centos64.puppetdebug.vlan
+    roles:
+      - pe-320-agent
+      - el-stop-firewall
+      - base
+
+  - name: pe-313-master
+    hostname: pe-313-master.puppetdebug.vlan
+    box: centos-65-x64-virtualbox-nocm
+    roles:
+      - pe-forward-console
+      - el-stop-firewall
+      - 4gb-memory
+      - base
+    provisioners:
+      - {type: pe_bootstrap, role: !ruby/sym master, version: '3.1.3'}
+
+  - name: pe-313-agent
+    box: centos-65-x64-virtualbox-nocm
+    hostname: pe-313-agent-centos64.puppetdebug.vlan
+    roles:
+      - pe-313-agent
+      - el-stop-firewall
+      - base
+
   - name: pe-301-master
     hostname: pe-301-master.puppetdebug.vlan
+    box: centos-65-x64-virtualbox-nocm
+    roles:
+      - pe-forward-console
+      - el-stop-firewall
+      - 4gb-memory
+      - base
+    provisioners:
+      - {type: pe_bootstrap, role: !ruby/sym master, version: '3.0.1'}
+
+  - name: pe-301-agent
+    box: centos-65-x64-virtualbox-nocm
+    hostname: pe-301-agent-centos64.puppetdebug.vlan
+    roles:
+      - pe-301-agent
+      - el-stop-firewall
+      - base
+
+  - name: pe-285-master
+    hostname: pe-285-master.puppetdebug.vlan
+    box: centos-65-x64-virtualbox-nocm
+    roles:
+      - pe-forward-console
+      - el-stop-firewall
+      - 1gb-memory
+      - base
+    provisioners:
+      - {type: pe_bootstrap, role: !ruby/sym master, version: '2.8.5'}
+
+  - name: pe-285-agent
+    box: centos-65-x64-virtualbox-nocm
+    hostname: pe-285-agent-centos65.puppetdebug.vlan
+    roles:
+      - pe-285-agent
+      - el-stop-firewall
+      - base
+
+  - name: pe-272-master
+    hostname: pe-272-master.puppetdebug.vlan
     box: centos-64-x64-vbox4210-nocm
     roles:
       - pe-forward-console
       - el-stop-firewall
-      - pe-301-master
+      - 1gb-memory
+      - base
+    provisioners:
+      - {type: pe_bootstrap, role: !ruby/sym master, version: '2.8.3'}
+
+  - name: pe-272-agent
+    box: centos-64-x64-vbox4210-nocm
+    hostname: pe-272-agent-centos64.puppetdebug.vlan
+    roles:
+      - pe-272-agent
+      - el-stop-firewall
       - base
 
-  - name: pe-301-agent-centos64
+  - name: pe-261-master
+    hostname: pe-261-master.puppetdebug.vlan
     box: centos-64-x64-vbox4210-nocm
-    hostname: pe-301-agent-centos64.puppetdebug.vlan
     roles:
+      - pe-forward-console
       - el-stop-firewall
-      - pe-301-agent
+      - 1gb-memory
       - base
+    provisioners:
+      - {type: pe_bootstrap, role: !ruby/sym master, version: '2.6.1'}
+
+  - name: pe-261-agent
+    box: centos-64-x64-vbox4210-nocm
+    hostname: pe-261-agent-centos64.puppetdebug.vlan
+    roles:
+      - pe-261-agent
+      - el-stop-firewall
+      - base
+
+  - name: pe-253-master
+    hostname: pe-253-master.puppetdebug.vlan
+    box: centos-64-x64-vbox4210-nocm
+    roles:
+      - pe-forward-console
+      - el-stop-firewall
+      - 1gb-memory
+      - base
+    provisioners:
+      - {type: pe_bootstrap, role: !ruby/sym master, version: '2.5.3'}
+
+  - name: pe-253-agent
+    box: centos-64-x64-vbox4210-nocm
+    hostname: pe-253-agent-centos64.puppetdebug.vlan
+    roles:
+      - pe-253-agent
+      - el-stop-firewall
+      - base
+
+  - name: pe-203-master
+    hostname: pe-203-master.puppetdebug.vlan
+    box: centos-64-x64-vbox4210-nocm
+    roles:
+      - pe-forward-console
+      - el-stop-firewall
+      - 1gb-memory
+      - base
+    provisioners:
+      - {type: pe_bootstrap, role: !ruby/sym master, version: '2.0.3'}
+
+  - name: pe-203-agent
+    box: centos-64-x64-vbox4210-nocm
+    hostname: pe-203-agent.puppetdebug.vlan
+    roles:
+      - pe-203-agent
+      - el-stop-firewall
+      - base
+
+# vim: set ft=yaml:
