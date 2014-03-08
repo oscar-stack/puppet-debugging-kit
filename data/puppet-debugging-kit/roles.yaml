@@ -33,6 +33,62 @@ roles:
         - [modifyvm, !ruby/sym id, '--memory', 4096]
 
 
+  # Puppet Open Source Roles
+  # ========================
+  el-6-repos:
+    provisioners:
+      - type: shell
+        inline: |
+          if yum list epel-release > /dev/null 2>&1; then
+            echo 'EPEL repo present.'
+          else
+            echo 'Adding EPEL repos.'
+            rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+          fi
+
+          if yum list puppetlabs-release > /dev/null 2>&1; then
+            echo 'PL repos present.'
+          else
+            echo 'Adding PL repos.'
+            rpm -ivh http://yum.puppetlabs.com/el/6/products/i386/puppetlabs-release-6-7.noarch.rpm
+          fi
+
+  el-6-ruby193:
+    provisioners:
+      - type: shell
+        # The EOF must be quoted to prevent shell expansion of the second line.
+        inline: |-
+          tee /etc/yum.repos.d/scl_ruby_193.repo << "EOF"
+          [scl_ruby193]
+          name=Ruby 1.9.3 Dynamic Software Collection
+          baseurl=http://people.redhat.com/bkabrda/ruby193-rhel-6/
+          failovermethod=priority
+          enabled=1
+          gpgcheck=0
+          EOF
+
+          yum install -y ruby193-ruby-devel
+
+          tee /etc/profile.d/ruby193.sh << "EOF"
+          # Enable ruby193 by default
+          source /opt/rh/ruby193/enable
+          # Place scripts installed by ruby193 gems on the PATH
+          export PATH=/opt/rh/ruby193/root/usr/local/bin:$PATH
+          EOF
+
+  share-puppet-source:
+    synced_folders:
+      - {host_path: 'src/puppetlabs', guest_path: '/puppetlabs'}
+    provisioners:
+      - type: shell
+        # The EOF must be quoted to prevent shell expansion of the second line.
+        inline: |-
+          tee /etc/profile.d/envpuppet.sh << "EOF"
+          export ENVPUPPET_BASEDIR=/puppetlabs
+          eval $($ENVPUPPET_BASEDIR/puppet/ext/envpuppet)
+          EOF
+
+
   # PE Specific Roles
   # =================
   pe-forward-console:
