@@ -9,6 +9,6 @@ namespace :setup do
 
   desc 'Install requirements into a local sandbox managed by Bundler'
   task :sandboxed do
-    Kernel.system 'bundle', 'install', '--binstubs', '--path=vendor'
+    Kernel.system 'bundle', 'install', '--binstubs', '--path=.bundle/vendor'
   end
 end
