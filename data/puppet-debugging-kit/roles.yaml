@@ -56,20 +56,12 @@ roles:
   el-6-ruby193:
     provisioners:
       - type: shell
-        # The EOF must be quoted to prevent shell expansion of the second line.
+        # The EOF must be quoted to prevent shell expansion.
         inline: |-
-          tee /etc/yum.repos.d/scl_ruby_193.repo << "EOF"
-          [scl_ruby193]
-          name=Ruby 1.9.3 Dynamic Software Collection
-          baseurl=http://people.redhat.com/bkabrda/ruby193-rhel-6/
-          failovermethod=priority
-          enabled=1
-          gpgcheck=0
-          EOF
-
+          yum install -y centos-release-SCL
           yum install -y ruby193-ruby-devel
 
-          tee /etc/profile.d/ruby193.sh << "EOF"
+          tee /etc/profile.d/enable-ruby193.sh << "EOF"
           # Enable ruby193 by default
           source /opt/rh/ruby193/enable
           # Place scripts installed by ruby193 gems on the PATH
