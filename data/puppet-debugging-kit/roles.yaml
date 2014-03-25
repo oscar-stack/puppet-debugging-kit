@@ -68,7 +68,7 @@ roles:
           export PATH=/opt/rh/ruby193/root/usr/local/bin:$PATH
           EOF
 
-  share-puppet-source:
+  poss-envpuppet:
     synced_folders:
       - {host_path: 'src/puppetlabs', guest_path: '/puppetlabs'}
     provisioners:
