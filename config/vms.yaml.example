@@ -145,4 +145,14 @@ vms:
       - el-stop-firewall
       - base
 
+
+  - name: poss-head-centos
+    box: centos-65-x64-virtualbox-nocm
+    hostname: poss-head-centos.puppetdebug.vlan
+    roles:
+      - poss-envpuppet
+      - el-6-ruby193
+      - el-stop-firewall
+      - base
+
 # vim: set ft=yaml:
