@@ -1,7 +1,7 @@
 # This rakefile contains tasks for automating the setup of the debugging kit.
 namespace :setup do
   desc 'Install requirements into a global Vagrant setup'
-  task :standard do
+  task :global do
     %w[oscar vagrant-vbox-snapshot].each do |plugin|
       Kernel.system 'vagrant', 'plugin', 'install', plugin
     end
