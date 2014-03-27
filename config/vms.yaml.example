@@ -6,11 +6,10 @@ vms:
     box: centos-65-x64-virtualbox-nocm
     roles:
       - pe-forward-console
+      - pe-321-master
       - el-stop-firewall
       - 4gb-memory
       - base
-    provisioners:
-      - {type: pe_bootstrap, role: !ruby/sym master, version: '3.2.1'}
 
   - name: pe-321-agent
     box: centos-65-x64-virtualbox-nocm
@@ -25,11 +24,10 @@ vms:
     box: centos-65-x64-virtualbox-nocm
     roles:
       - pe-forward-console
+      - pe-313-master
       - el-stop-firewall
       - 4gb-memory
       - base
-    provisioners:
-      - {type: pe_bootstrap, role: !ruby/sym master, version: '3.1.3'}
 
   - name: pe-313-agent
     box: centos-65-x64-virtualbox-nocm
@@ -44,11 +42,10 @@ vms:
     box: centos-65-x64-virtualbox-nocm
     roles:
       - pe-forward-console
+      - pe-301-master
       - el-stop-firewall
       - 4gb-memory
       - base
-    provisioners:
-      - {type: pe_bootstrap, role: !ruby/sym master, version: '3.0.1'}
 
   - name: pe-301-agent
     box: centos-65-x64-virtualbox-nocm
@@ -63,11 +60,10 @@ vms:
     box: centos-65-x64-virtualbox-nocm
     roles:
       - pe-forward-console
+      - pe-285-master
       - el-stop-firewall
       - 1gb-memory
       - base
-    provisioners:
-      - {type: pe_bootstrap, role: !ruby/sym master, version: '2.8.5'}
 
   - name: pe-285-agent
     box: centos-65-x64-virtualbox-nocm
@@ -82,11 +78,10 @@ vms:
     box: centos-64-x64-vbox4210-nocm
     roles:
       - pe-forward-console
+      - pe-272-master
       - el-stop-firewall
       - 1gb-memory
       - base
-    provisioners:
-      - {type: pe_bootstrap, role: !ruby/sym master, version: '2.8.3'}
 
   - name: pe-272-agent
     box: centos-64-x64-vbox4210-nocm
@@ -101,11 +96,10 @@ vms:
     box: centos-64-x64-vbox4210-nocm
     roles:
       - pe-forward-console
+      - pe-261-master
       - el-stop-firewall
       - 1gb-memory
       - base
-    provisioners:
-      - {type: pe_bootstrap, role: !ruby/sym master, version: '2.6.1'}
 
   - name: pe-261-agent
     box: centos-64-x64-vbox4210-nocm
@@ -120,11 +114,10 @@ vms:
     box: centos-64-x64-vbox4210-nocm
     roles:
       - pe-forward-console
+      - pe-253-master
       - el-stop-firewall
       - 1gb-memory
       - base
-    provisioners:
-      - {type: pe_bootstrap, role: !ruby/sym master, version: '2.5.3'}
 
   - name: pe-253-agent
     box: centos-64-x64-vbox4210-nocm
@@ -139,11 +132,10 @@ vms:
     box: centos-64-x64-vbox4210-nocm
     roles:
       - pe-forward-console
+      - pe-203-master
       - el-stop-firewall
       - 1gb-memory
       - base
-    provisioners:
-      - {type: pe_bootstrap, role: !ruby/sym master, version: '2.0.3'}
 
   - name: pe-203-agent
     box: centos-64-x64-vbox4210-nocm

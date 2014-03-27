@@ -87,33 +87,65 @@ roles:
     forwarded_ports:
       - {guest: 443, host: 4443, auto_correct: true}
 
+  pe-321-master:
+    provisioners:
+      - {type: pe_bootstrap, role: !ruby/sym master, version: '3.2.1'}
+
   pe-321-agent:
     provisioners:
       - {type: pe_bootstrap, master: 'pe-321-master.puppetdebug.vlan', version: '3.2.1'}
+
+  pe-313-master:
+    provisioners:
+      - {type: pe_bootstrap, role: !ruby/sym master, version: '3.1.3'}
 
   pe-313-agent:
     provisioners:
       - {type: pe_bootstrap, master: 'pe-313-master.puppetdebug.vlan', version: '3.1.3'}
 
+  pe-301-master:
+    provisioners:
+      - {type: pe_bootstrap, role: !ruby/sym master, version: '3.0.1'}
+
   pe-301-agent:
     provisioners:
       - {type: pe_bootstrap, master: 'pe-301-master.puppetdebug.vlan', version: '3.0.1'}
+
+  pe-285-master:
+    provisioners:
+      - {type: pe_bootstrap, role: !ruby/sym master, version: '2.8.5'}
 
   pe-285-agent:
     provisioners:
       - {type: pe_bootstrap, master: 'pe-285-master.puppetdebug.vlan', version: '2.8.5'}
 
+  pe-272-master:
+    provisioners:
+      - {type: pe_bootstrap, role: !ruby/sym master, version: '2.7.2'}
+
   pe-272-agent:
     provisioners:
       - {type: pe_bootstrap, master: 'pe-272-master.puppetdebug.vlan', version: '2.7.2'}
+
+  pe-261-master:
+    provisioners:
+      - {type: pe_bootstrap, role: !ruby/sym master, version: '2.6.1'}
 
   pe-261-agent:
     provisioners:
       - {type: pe_bootstrap, master: 'pe-261-master.puppetdebug.vlan', version: '2.6.1'}
 
+  pe-253-master:
+    provisioners:
+      - {type: pe_bootstrap, role: !ruby/sym master, version: '2.5.3'}
+
   pe-253-agent:
     provisioners:
       - {type: pe_bootstrap, master: 'pe-253-master.puppetdebug.vlan', version: '2.5.3'}
+
+  pe-203-master:
+    provisioners:
+      - {type: pe_bootstrap, role: !ruby/sym master, version: '2.0.3'}
 
   pe-203-agent:
     provisioners:
