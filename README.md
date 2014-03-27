@@ -3,63 +3,63 @@ _The only good bug is a dead bug._
 
 This project provides a batteries-included Vagrant environment for debugging Puppet powered infrastructures.
 
+
 ## Setup
 
-The dubugging kit can be used in two different configurations depending on the version of Vagrant installed on the user's machine.
-If Vagrant 1.1+ or newer is in use system-wide, then setup merely consists of installing required Vagrant plugins.
-If the system-wide version of Vagrant is 1.0.7 or earlier, the debugging kit provides a Bundler based sandbox that can be used to run a newer version of Vagrant that will not interfere with the legacy version installed on the system.
+Getting the debugging kit ready for use consists of three steps:
 
-### Standard Setup
+  - Ensure the proper Vagrant plugins are installed.
 
-This is recommended for users who are running Vagrant 1.1 or newer.
-Users with older Vagrant installs who do not wish to upgrade should consider the "Sandboxed Setup" detailed below.
+  - Create VM definitions in `config/vms.yaml`.
 
-A Rake task is provided which installs the necessary Vagrant plugins:
+  - Clone Puppet Open Source projects to `src/puppetlabs` (optional).
 
-    rake setup:standard
+Rake tasks and templates are provided to help with all three steps.
 
-### Sandboxed Setup
+### Install Vagrant Plugins
 
-This option is provided for those users with a legacy Vagrant installation (1.0.7 or earlier) that needs to remain functional for other projects.
+Two methods are avaible depending on whether a global Vagrant installation, such as provided by the official packages from [vagrantup.com](http://vagrantup.com), is in use:
 
-A Rake task is provided which sets up the bundler environment:
+  - `rake setup:global`:
+    This Rake task will add all plugins required by the debugging kit to a global Vagrant installation.
 
-    rake setup:sandbox
+  - `rake setup:sandboxed`:
+    This Rake task will use Bundler to create a completely sandboxed Vagrant installation that includes the plugins required by the debugging kit.
+    The contents of the sandbox can be customized by creating a `Gemfile.local` that specifies additional gems and Bundler environment parameters.
 
-The sandboxed version of vagrant can now be accessed through `bin/vagrant`.
-I.E. to bring up a box, one would invoke `bin/vagrant up pe-301-master`.
-The version of Vagrant operating out of the sandbox uses `/usr/local/var/vagrant/puppet-debugging-kit` as its `VAGRANT_HOME` to avoid clobbering legacy data in `~/.vagrant.d`.
+### Create VM Definitions
 
-#### Sandbox Customization
+Debugging Kit virtual machine definitions are stored in the file `config/vms.yaml` and an example is provided as `config/vms.yaml.example`.
+The example can simply be copied to `config/vms.yaml` but it contains a large number of VM definitions which adds some notable lag to Vagrant start-up times.
+Start-up lag can be remedied by pruning unwanted definitions after copying the example file.
 
-The sandbox can be customized through by creating a `Gemfile.local`.
-Things that can be set inside this file include:
+### Clone Puppet Open Source Projects
 
-  - The `VAGRANT_HOME`, by assigning a value to `ENV['VAGRANT_HOME']`.
+The `poss-envpuppet` role is designed to run Puppet in guest machines directly from Git clones located on the host machine at `src/puppetlabs/`.
+This role is useful for inspecting and debugging changes in behavior between versions without re-installing packages.
+The required Git clones can be created by running the following Rake task:
 
-  - Additional gems, through the use of `gem` directives.
+    rake setup:poss
 
-  - Additional Vagrant Plugins, by placing `gem` directives inside of a `group :vagrant_plugins do` block.
-
-Full documentation for the contents of a Gemfile can be found on [the Bundler website](http://bundler.io/v1.3/gemfile.html).
 
 ## Usage
 
-The debugging kit can be thought of as a library of configuration and data for Oscar.
-Data is loaded from two sets of YAML files under the `config` directory:
+The debugging kit can be thought of as a library of configuration and data for [Oscar](https://github.com/adrienthebo/oscar).
+Data is loaded from two sets of YAML files:
 
 ```
 config
-├── debugging-kit
-│   └── *.yaml     # <-- The debugging kit library
 └── *.yaml         # <-- User-specific customizations
+data
+└── puppet-debugging-kit
+    └── *.yaml     # <-- The debugging kit library
 ```
 
-Everything under `config/debugging-kit` is loaded first.
+Everything under `data/puppet-debugging-kit` is loaded first.
 In order to avoid merge conflicts when the library is updated, these files should never be edited unless you plan to submit your changes as a pull request.
 
-The contents of `config/*.yaml` are loaded next and can be used to extend or override anything provided by `config/debugging-kit`.
-These files are where user-specific customizations should go.
+The contents of `config/*.yaml` are loaded next and can be used to extend or override anything provided by `data/puppet-debugging-kit`.
+These files are not tracked by Git and are where user-specific customizations should go.
 
 ---
 <p align="center">
