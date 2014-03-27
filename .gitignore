@@ -4,3 +4,4 @@
 Gemfile.local
 bin
 config/*.yaml
+src/puppetlabs
