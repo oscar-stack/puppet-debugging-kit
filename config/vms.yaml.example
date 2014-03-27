@@ -1,8 +1,8 @@
 ---
 vms:
 
-  - name: pe-320-master
-    hostname: pe-320-master.puppetdebug.vlan
+  - name: pe-321-master
+    hostname: pe-321-master.puppetdebug.vlan
     box: centos-65-x64-virtualbox-nocm
     roles:
       - pe-forward-console
@@ -10,13 +10,13 @@ vms:
       - 4gb-memory
       - base
     provisioners:
-      - {type: pe_bootstrap, role: !ruby/sym master, version: '3.2.0'}
+      - {type: pe_bootstrap, role: !ruby/sym master, version: '3.2.1'}
 
-  - name: pe-320-agent
+  - name: pe-321-agent
     box: centos-65-x64-virtualbox-nocm
-    hostname: pe-320-agent-centos64.puppetdebug.vlan
+    hostname: pe-321-agent-centos64.puppetdebug.vlan
     roles:
-      - pe-320-agent
+      - pe-321-agent
       - el-stop-firewall
       - base
 

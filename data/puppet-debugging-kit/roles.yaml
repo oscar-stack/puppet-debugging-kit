@@ -87,9 +87,9 @@ roles:
     forwarded_ports:
       - {guest: 443, host: 4443, auto_correct: true}
 
-  pe-320-agent:
+  pe-321-agent:
     provisioners:
-      - {type: pe_bootstrap, master: 'pe-320-master.puppetdebug.vlan', version: '3.2.0'}
+      - {type: pe_bootstrap, master: 'pe-321-master.puppetdebug.vlan', version: '3.2.1'}
 
   pe-313-agent:
     provisioners:
