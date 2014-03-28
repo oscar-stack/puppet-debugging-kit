@@ -44,6 +44,38 @@ The required Git clones can be created by running the following Rake task:
 
 ## Usage
 
+Use of the debugging kit consists of:
+
+  - Creating a new VM definition in `config/vms.yaml`.
+    The `box` component determines which Vagrant basebox will be used.
+    The default baseboxes can be found in [`data/puppet-debugging-kit/boxes.yaml`](https://github.com/puppetlabs/puppet-debugging-kit/blob/internal/data/puppet-debugging-kit/boxes.yaml).
+
+  - Assigning a list of "roles" that customize the VM behavior.
+    The role list can be viewed as a stack in which the last entry is applied first.
+    Most VMs start with the `base` role which auto-assigns an IP address and sets up network connectivity.
+    The default roles can be found in [`data/puppet-debugging-kit/roles.yaml`](https://github.com/puppetlabs/puppet-debugging-kit/blob/internal/data/puppet-debugging-kit/roles.yaml) and are explained in more detail below.
+
+
+### PE Specific Roles
+
+There are three roles that assist with creating PE machines:
+
+  - `pe-forward-console`:
+    This role sets up a port forward for console accesss from 443 on the guest VM to 4443 on the host machine.
+    If some other running VM is already forwarding to 4443 on the host, Vagrant will choose a random port number that will be displayed in the log output when the VM starts up.
+
+  - `pe-<version>-master`:
+    This role performs an all-in-one master installation of PE `<version>` on the guest VM.
+    When specifying the version number, remove any separators such that `3.2.1` becomes `321`.
+    The PE console is configured with username `admin@puppetlabs.com` and password `puppetlabs`.
+
+  - `pe-<version>-agent`:
+    This role performs an agent installation of PE `<version>` on the guest VM.
+    The agent is configured to contact a master running at `pe-<version>-master.puppetdebug.vlan` --- so ensure a VM with that hostname is configured and running before bringing up any agents.
+
+
+## Extending and Contributing
+
 The debugging kit can be thought of as a library of configuration and data for [Oscar](https://github.com/adrienthebo/oscar).
 Data is loaded from two sets of YAML files:
 
