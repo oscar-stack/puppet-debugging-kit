@@ -1,16 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# Hammer out a couple of kinks related to Vagrant plugins
-if defined? Bundler
-  # When running under Bundler, Vagrant disables plugins. We use a Bundler group
-  # to simulate the auto-loading that Vagrant normally does when plugins are
-  # enabled.
-  Bundler.require :vagrant_plugins
-else
-  Vagrant.require_plugin('oscar')
-end
-
 if defined? Oscar
   vagrant_dir = File.dirname(__FILE__)
   # Oscar will load all YAML files in each directory listed below. Directories
