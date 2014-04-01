@@ -1,7 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-if defined? Oscar
+if defined? Oscar # Do nothing if Oscar isn't loaded.
+  require_relative 'lib/puppet_debugging_kit'
+
   vagrant_dir = File.dirname(__FILE__)
   # Oscar will load all YAML files in each directory listed below. Directories
   # that appear later in the array will append or overwrite config loaded from
