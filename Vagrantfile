@@ -18,7 +18,7 @@ if defined? Oscar
   # directories that appear first in the array. The deep_merge gem is used to
   # effect this behavior.
   config_dirs = %w[
-    data/puppet-debugging-kit
+    data/puppet_debugging_kit
     config
   ].map{|d| File.expand_path(d, vagrant_dir)}
 

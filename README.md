@@ -48,12 +48,12 @@ Use of the debugging kit consists of:
 
   - Creating a new VM definition in `config/vms.yaml`.
     The `box` component determines which Vagrant basebox will be used.
-    The default baseboxes can be found in [`data/puppet-debugging-kit/boxes.yaml`](https://github.com/puppetlabs/puppet-debugging-kit/blob/internal/data/puppet-debugging-kit/boxes.yaml).
+    The default baseboxes can be found in [`data/puppet_debugging_kit/boxes.yaml`](https://github.com/puppetlabs/puppet-debugging-kit/blob/internal/data/puppet_debugging_kit/boxes.yaml).
 
   - Assigning a list of "roles" that customize the VM behavior.
     The role list can be viewed as a stack in which the last entry is applied first.
     Most VMs start with the `base` role which auto-assigns an IP address and sets up network connectivity.
-    The default roles can be found in [`data/puppet-debugging-kit/roles.yaml`](https://github.com/puppetlabs/puppet-debugging-kit/blob/internal/data/puppet-debugging-kit/roles.yaml) and are explained in more detail below.
+    The default roles can be found in [`data/puppet_debugging_kit/roles.yaml`](https://github.com/puppetlabs/puppet-debugging-kit/blob/internal/data/puppet_debugging_kit/roles.yaml) and are explained in more detail below.
 
 
 ### PE Specific Roles
@@ -83,14 +83,14 @@ Data is loaded from two sets of YAML files:
 config
 └── *.yaml         # <-- User-specific customizations
 data
-└── puppet-debugging-kit
+└── puppet_debugging_kit
     └── *.yaml     # <-- The debugging kit library
 ```
 
-Everything under `data/puppet-debugging-kit` is loaded first.
+Everything under `data/puppet_debugging_kit` is loaded first.
 In order to avoid merge conflicts when the library is updated, these files should never be edited unless you plan to submit your changes as a pull request.
 
-The contents of `config/*.yaml` are loaded next and can be used to extend or override anything provided by `data/puppet-debugging-kit`.
+The contents of `config/*.yaml` are loaded next and can be used to extend or override anything provided by `data/puppet_debugging_kit`.
 These files are not tracked by Git and are where user-specific customizations should go.
 
 ---
