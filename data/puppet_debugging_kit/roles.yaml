@@ -68,6 +68,17 @@ roles:
           export PATH=/opt/rh/ruby193/root/usr/local/bin:$PATH
           EOF
 
+  poss-deb-repos:
+    provisioners:
+      - type: shell
+        inline: | # Cribbed from the Beaker utility library. Should work on Debian and Ubuntu.
+          dpkg -s puppetlabs-release | grep -q '^Status:.* installed' || {
+            apt-get install -y curl
+            curl -O http://apt.puppetlabs.com/puppetlabs-release-$(lsb_release -c -s).deb
+            dpkg -i puppetlabs-release-$(lsb_release -c -s).deb
+            apt-get -y -f -m update
+          }
+
   poss-envpuppet:
     synced_folders:
       - {host_path: 'src/puppetlabs', guest_path: '/puppetlabs'}
