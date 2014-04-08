@@ -68,6 +68,21 @@ roles:
           export PATH=/opt/rh/ruby193/root/usr/local/bin:$PATH
           EOF
 
+  poss-rh-repos:
+    provisioners:
+      - type: shell
+        inline: | # Should work on CentOS and Fedora.
+          rpm --quiet -q puppetlabs-release || {
+            if [ -f /etc/fedora-release ]; then
+              RH_DIST='fedora'
+            else
+              RH_DIST='el'
+            fi
+            RH_VERS=$(rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat-release))
+
+            rpm -ivh "http://yum.puppetlabs.com/puppetlabs-release-$RH_DIST-$RH_VERS.noarch.rpm"
+          }
+
   poss-deb-repos:
     provisioners:
       - type: shell
