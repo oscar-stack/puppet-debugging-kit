@@ -74,6 +74,17 @@ There are three roles that assist with creating PE machines:
     The agent is configured to contact a master running at `pe-<version>-master.puppetdebug.vlan` --- so ensure a VM with that hostname is configured and running before bringing up any agents.
 
 
+### POSS Specific Roles
+
+There are a few roles that assist with creating VMs that run Puppet Open Source Software (POSS).
+
+  - `poss-apt-repos`:
+    This role configures access to the official repositories at apt.puppetlabs.com for Debian and Ubuntu VMs.
+
+  - `poss-yum-repos`:
+    This role configures access to the official repositories at yum.puppetlabs.com for CentOS and Fedora VMs.
+
+
 ## Extending and Contributing
 
 The debugging kit can be thought of as a library of configuration and data for [Oscar](https://github.com/adrienthebo/oscar).

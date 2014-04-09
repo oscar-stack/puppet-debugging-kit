@@ -68,10 +68,10 @@ roles:
           export PATH=/opt/rh/ruby193/root/usr/local/bin:$PATH
           EOF
 
-  poss-rh-repos:
+  poss-yum-repos:
     provisioners:
       - type: shell
-        inline: | # Should work on CentOS and Fedora.
+        inline: | # Configure yum.puppetlabs.com on supported platforms.
           rpm --quiet -q puppetlabs-release || {
             if [ -f /etc/fedora-release ]; then
               RH_DIST='fedora'
@@ -83,10 +83,10 @@ roles:
             rpm -ivh "http://yum.puppetlabs.com/puppetlabs-release-$RH_DIST-$RH_VERS.noarch.rpm"
           }
 
-  poss-deb-repos:
+  poss-apt-repos:
     provisioners:
       - type: shell
-        inline: | # Cribbed from the Beaker utility library. Should work on Debian and Ubuntu.
+        inline: | # Configure apt.puppetlabs.com on supported platforms.
           dpkg -s puppetlabs-release | grep -q '^Status:.* installed' || {
             apt-get install -y curl
             curl -O http://apt.puppetlabs.com/puppetlabs-release-$(lsb_release -c -s).deb
