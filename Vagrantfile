@@ -3,6 +3,7 @@
 
 if defined? Oscar # Do nothing if Oscar isn't loaded.
   require_relative 'lib/puppet_debugging_kit'
+  PuppetDebuggingKit::PluginChecks.run
 
   vagrant_dir = File.dirname(__FILE__)
   # Oscar will load all YAML files in each directory listed below. Directories
