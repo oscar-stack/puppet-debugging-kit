@@ -53,6 +53,17 @@ roles:
             rpm -ivh http://yum.puppetlabs.com/el/6/products/i386/puppetlabs-release-6-7.noarch.rpm
           fi
 
+  el-6-epel:
+    provisioners:
+      - type: shell
+        inline: |
+          if rpm --quiet -q epel-release; then
+            echo 'EPEL repo present.'
+          else
+            echo 'Adding EPEL repos.'
+            rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+          fi
+
   el-6-ruby193:
     provisioners:
       - type: shell
