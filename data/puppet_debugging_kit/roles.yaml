@@ -36,6 +36,7 @@ roles:
   # Puppet Open Source Roles
   # ========================
   el-6-repos:
+    depreciated-role: 'Use poss-yum-repos and el-6-epel instead'
     provisioners:
       - type: shell
         inline: |
