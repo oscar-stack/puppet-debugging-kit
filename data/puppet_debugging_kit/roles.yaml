@@ -72,7 +72,9 @@ roles:
     provisioners:
       - type: shell
         inline: | # Configure yum.puppetlabs.com on supported platforms.
-          rpm --quiet -q puppetlabs-release || {
+          if rpm --quiet -q puppetlabs-release; then
+            echo 'Puppet Labs repo present.'
+          else
             if [ -f /etc/fedora-release ]; then
               RH_DIST='fedora'
             else
@@ -80,8 +82,10 @@ roles:
             fi
             RH_VERS=$(rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat-release))
 
+            echo "Adding Puppet Labs repo for $RH_DIST $RH_VERS."
+
             rpm -ivh "http://yum.puppetlabs.com/puppetlabs-release-$RH_DIST-$RH_VERS.noarch.rpm"
-          }
+          fi
 
   poss-apt-repos:
     provisioners:
