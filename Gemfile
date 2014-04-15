@@ -14,7 +14,7 @@ gem 'vagrant', :github => 'mitchellh/vagrant', :tag => 'v1.5.3'
 group :plugins do
   gem 'vagrant-hosts', '>= 2.1.3' # Version required for Vagrant 1.5.x
   gem 'vagrant-auto_network'
-  gem 'vagrant-pe_build'
+  gem 'vagrant-pe_build', '>= 0.8.6'
   gem 'vagrant-config_builder', '>= 0.7.0' # Version required for deep_merge
   gem 'oscar'
   gem 'vagrant-vbox-snapshot'
