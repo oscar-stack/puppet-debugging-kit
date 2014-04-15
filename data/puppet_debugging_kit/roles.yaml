@@ -160,6 +160,14 @@ roles:
     provisioners:
       - {type: pe_bootstrap, master: 'pe-301-master.puppetdebug.vlan', version: '3.0.1'}
 
+  pe-286-master:
+    provisioners:
+      - {type: pe_bootstrap, role: !ruby/sym master, version: '2.8.6'}
+
+  pe-286-agent:
+    provisioners:
+      - {type: pe_bootstrap, master: 'pe-286-master.puppetdebug.vlan', version: '2.8.6'}
+
   pe-285-master:
     provisioners:
       - {type: pe_bootstrap, role: !ruby/sym master, version: '2.8.5'}

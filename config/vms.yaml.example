@@ -55,21 +55,21 @@ vms:
       - el-stop-firewall
       - base
 
-  - name: pe-285-master
+  - name: pe-286-master
     box: centos-65-x64-virtualbox-nocm
-    hostname: pe-285-master.puppetdebug.vlan
+    hostname: pe-286-master.puppetdebug.vlan
     roles:
       - pe-forward-console
-      - pe-285-master
+      - pe-286-master
       - el-stop-firewall
       - 1gb-memory
       - base
 
-  - name: pe-285-agent
+  - name: pe-286-agent
     box: centos-65-x64-virtualbox-nocm
-    hostname: pe-285-agent-centos65.puppetdebug.vlan
+    hostname: pe-286-agent-centos65.puppetdebug.vlan
     roles:
-      - pe-285-agent
+      - pe-286-agent
       - el-stop-firewall
       - base
 
