@@ -2,7 +2,7 @@
 vms:
 
   - name: pe-322-master
-    box: centos-65-x64-virtualbox-nocm
+    box: puppetlabs/centos-6.5-64-nocm
     hostname: pe-322-master.puppetdebug.vlan
     roles:
       - pe-forward-console
@@ -12,7 +12,7 @@ vms:
       - base
 
   - name: pe-322-agent
-    box: centos-65-x64-virtualbox-nocm
+    box: puppetlabs/centos-6.5-64-nocm
     hostname: pe-322-agent-centos65.puppetdebug.vlan
     roles:
       - pe-322-agent
@@ -20,7 +20,7 @@ vms:
       - base
 
   - name: pe-313-master
-    box: centos-65-x64-virtualbox-nocm
+    box: puppetlabs/centos-6.5-64-nocm
     hostname: pe-313-master.puppetdebug.vlan
     roles:
       - pe-forward-console
@@ -30,7 +30,7 @@ vms:
       - base
 
   - name: pe-313-agent
-    box: centos-65-x64-virtualbox-nocm
+    box: puppetlabs/centos-6.5-64-nocm
     hostname: pe-313-agent-centos65.puppetdebug.vlan
     roles:
       - pe-313-agent
@@ -38,7 +38,7 @@ vms:
       - base
 
   - name: pe-301-master
-    box: centos-65-x64-virtualbox-nocm
+    box: puppetlabs/centos-6.5-64-nocm
     hostname: pe-301-master.puppetdebug.vlan
     roles:
       - pe-forward-console
@@ -48,7 +48,7 @@ vms:
       - base
 
   - name: pe-301-agent
-    box: centos-65-x64-virtualbox-nocm
+    box: puppetlabs/centos-6.5-64-nocm
     hostname: pe-301-agent-centos65.puppetdebug.vlan
     roles:
       - pe-301-agent
@@ -56,7 +56,7 @@ vms:
       - base
 
   - name: pe-286-master
-    box: centos-65-x64-virtualbox-nocm
+    box: puppetlabs/centos-6.5-64-nocm
     hostname: pe-286-master.puppetdebug.vlan
     roles:
       - pe-forward-console
@@ -66,7 +66,7 @@ vms:
       - base
 
   - name: pe-286-agent
-    box: centos-65-x64-virtualbox-nocm
+    box: puppetlabs/centos-6.5-64-nocm
     hostname: pe-286-agent-centos65.puppetdebug.vlan
     roles:
       - pe-286-agent
@@ -74,7 +74,7 @@ vms:
       - base
 
   - name: pe-272-master
-    box: centos-65-x64-virtualbox-nocm
+    box: puppetlabs/centos-6.5-64-nocm
     hostname: pe-272-master.puppetdebug.vlan
     roles:
       - pe-forward-console
@@ -84,7 +84,7 @@ vms:
       - base
 
   - name: pe-272-agent
-    box: centos-65-x64-virtualbox-nocm
+    box: puppetlabs/centos-6.5-64-nocm
     hostname: pe-272-agent-centos65.puppetdebug.vlan
     roles:
       - pe-272-agent
@@ -92,7 +92,7 @@ vms:
       - base
 
   - name: pe-261-master
-    box: centos-65-x64-virtualbox-nocm
+    box: puppetlabs/centos-6.5-64-nocm
     hostname: pe-261-master.puppetdebug.vlan
     roles:
       - pe-forward-console
@@ -102,7 +102,7 @@ vms:
       - base
 
   - name: pe-261-agent
-    box: centos-65-x64-virtualbox-nocm
+    box: puppetlabs/centos-6.5-64-nocm
     hostname: pe-261-agent-centos65.puppetdebug.vlan
     roles:
       - pe-261-agent
@@ -111,7 +111,7 @@ vms:
 
   - name: pe-253-master
     hostname: pe-253-master.puppetdebug.vlan
-    box: centos-65-x64-virtualbox-nocm
+    box: puppetlabs/centos-6.5-64-nocm
     roles:
       - pe-forward-console
       - pe-253-master
@@ -120,7 +120,7 @@ vms:
       - base
 
   - name: pe-253-agent
-    box: centos-65-x64-virtualbox-nocm
+    box: puppetlabs/centos-6.5-64-nocm
     hostname: pe-253-agent-centos65.puppetdebug.vlan
     roles:
       - pe-253-agent
@@ -128,7 +128,7 @@ vms:
       - base
 
   - name: pe-203-master
-    box: centos-65-x64-virtualbox-nocm
+    box: puppetlabs/centos-6.5-64-nocm
     hostname: pe-203-master.puppetdebug.vlan
     roles:
       - pe-forward-console
@@ -138,7 +138,7 @@ vms:
       - base
 
   - name: pe-203-agent
-    box: centos-65-x64-virtualbox-nocm
+    box: puppetlabs/centos-6.5-64-nocm
     hostname: pe-203-agent.puppetdebug.vlan
     roles:
       - pe-203-agent
@@ -147,7 +147,7 @@ vms:
 
 
   - name: poss-head-centos
-    box: centos-65-x64-virtualbox-nocm
+    box: puppetlabs/centos-6.5-64-nocm
     hostname: poss-head-centos.puppetdebug.vlan
     roles:
       - poss-envpuppet
