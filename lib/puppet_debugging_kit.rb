@@ -17,7 +17,7 @@ module PuppetDebuggingKit
     def error_message; @error_message; end
   end
 
-  REQUIRED_CONFIG_BUILDER = Gem::Version.new('0.7.0')
+  REQUIRED_CONFIG_BUILDER = Gem::Version.new('0.7.1')
   REQUIRED_HOSTS          = Gem::Version.new('2.1.3')
   REQUIRED_PE_BUILD       = Gem::Version.new('0.8.6')
 

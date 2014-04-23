@@ -15,7 +15,7 @@ group :plugins do
   gem 'vagrant-hosts', '>= 2.1.3' # Version required for Vagrant 1.5.x
   gem 'vagrant-auto_network'
   gem 'vagrant-pe_build', '>= 0.8.6'
-  gem 'vagrant-config_builder', '>= 0.7.0' # Version required for deep_merge
+  gem 'vagrant-config_builder', '>= 0.7.1' # Version required for deep_merge
   gem 'oscar'
   gem 'vagrant-vbox-snapshot'
 end
