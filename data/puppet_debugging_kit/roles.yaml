@@ -130,6 +130,11 @@ roles:
           eval $($ENVPUPPET_BASEDIR/puppet/ext/envpuppet)
           EOF
 
+          source /etc/profile.d/envpuppet.sh
+
+          puppet resource group puppet ensure=present
+          puppet resource user puppet ensure=present gid=puppet shell='/sbin/nologin'
+
 
   # PE Specific Roles
   # =================
