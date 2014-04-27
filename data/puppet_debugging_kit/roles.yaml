@@ -89,6 +89,13 @@ roles:
             gem install --no-rdoc --no-ri json_pure
           fi
 
+          if ruby -e "begin require 'rgen'; rescue LoadError; exit(1); end"; then
+            echo "RGen library available."
+          else
+            echo "Installing rgen gem."
+            gem install --no-rdoc --no-ri rgen
+          fi
+
   poss-yum-repos:
     provisioners:
       - type: shell
