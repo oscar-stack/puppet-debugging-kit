@@ -1,21 +1,21 @@
 ---
 vms:
 
-  - name: pe-322-master
+  - name: pe-323-master
     box: puppetlabs/centos-6.5-64-nocm
-    hostname: pe-322-master.puppetdebug.vlan
+    hostname: pe-323-master.puppetdebug.vlan
     roles:
       - pe-forward-console
-      - pe-322-master
+      - pe-323-master
       - el-stop-firewall
       - 4gb-memory
       - base
 
-  - name: pe-322-agent
+  - name: pe-323-agent
     box: puppetlabs/centos-6.5-64-nocm
-    hostname: pe-322-agent-centos65.puppetdebug.vlan
+    hostname: pe-323-agent-centos65.puppetdebug.vlan
     roles:
-      - pe-322-agent
+      - pe-323-agent
       - el-stop-firewall
       - base
 

@@ -150,6 +150,14 @@ roles:
     forwarded_ports:
       - {guest: 443, host: 4443, auto_correct: true}
 
+  pe-323-master:
+    provisioners:
+      - {type: pe_bootstrap, role: !ruby/sym master, version: '3.2.3'}
+
+  pe-323-agent:
+    provisioners:
+      - {type: pe_bootstrap, master: 'pe-323-master.puppetdebug.vlan', version: '3.2.3'}
+
   pe-322-master:
     provisioners:
       - {type: pe_bootstrap, role: !ruby/sym master, version: '3.2.2'}
