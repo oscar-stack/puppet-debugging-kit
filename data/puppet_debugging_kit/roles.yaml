@@ -15,22 +15,31 @@ roles:
       - {type: shell, inline: 'chkconfig iptables off'}
 
   1gb-memory:
-    provider:
-      type: virtualbox
-      customize:
-        - [modifyvm, !ruby/sym id, '--memory', 1024]
+    providers:
+      - type: virtualbox
+        customize:
+          - [modifyvm, !ruby/sym id, '--memory', 1024]
+      - type: vmware_fusion
+        vmx:
+          memsize: 1024
 
   2gb-memory:
-    provider:
-      type: virtualbox
-      customize:
-        - [modifyvm, !ruby/sym id, '--memory', 2048]
+    providers:
+      - type: virtualbox
+        customize:
+          - [modifyvm, !ruby/sym id, '--memory', 2048]
+      - type: vmware_fusion
+        vmx:
+          memsize: 2048
 
   4gb-memory:
-    provider:
-      type: virtualbox
-      customize:
-        - [modifyvm, !ruby/sym id, '--memory', 4096]
+    providers:
+      - type: virtualbox
+        customize:
+          - [modifyvm, !ruby/sym id, '--memory', 4096]
+      - type: vmware_fusion
+        vmx:
+          memsize: 4096
 
 
   # Puppet Open Source Roles
