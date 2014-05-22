@@ -8,11 +8,12 @@ class PuppetDebuggingKit::Filter::DepreciatedRoles
 
   def run
     depreciated_roles, @root_config['roles'] = filter_roles(@root_config['roles'])
+    vms = @root_config.fetch('vms', [])
 
-    return @root_config if depreciated_roles.empty?
+    return @root_config if depreciated_roles.empty? || vms.empty?
 
     logger = PuppetDebuggingKit::Logging.global_logger
-    used_roles(@root_config['vms'], depreciated_roles).each do |role, vms|
+    used_roles(vms, depreciated_roles).each do |role, vms|
       message = depreciated_roles[role] +
         "\nThe following VMs use this role:\n" +
         vms.map{|n| '  - ' + n}.join("\n")
