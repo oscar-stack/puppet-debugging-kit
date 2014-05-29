@@ -77,12 +77,12 @@ roles:
   el-6-ruby193:
     provisioners:
       - type: shell
-        # The EOF must be quoted to prevent shell expansion.
         inline: |-
           yum install -y centos-release-SCL
           yum install -y ruby193-ruby-devel
 
-          tee /etc/profile.d/enable-ruby193.sh << "EOF"
+          # The EOF must be quoted to prevent shell expansion.
+          tee /etc/profile.d/enable-scl-ruby.sh << "EOF"
           # Enable ruby193 by default
           source /opt/rh/ruby193/enable
           # Place scripts installed by ruby193 gems on the PATH
@@ -90,6 +90,39 @@ roles:
           EOF
 
           source /opt/rh/ruby193/enable
+
+          if ruby -e "begin require 'json'; rescue LoadError; exit(1); end"; then
+            echo "JSON library available."
+          else
+            echo "Installing json_pure gem."
+            gem install --no-rdoc --no-ri json_pure
+          fi
+
+          if ruby -e "begin require 'rgen'; rescue LoadError; exit(1); end"; then
+            echo "RGen library available."
+          else
+            echo "Installing rgen gem."
+            gem install --no-rdoc --no-ri rgen
+          fi
+
+  # NOTE: You will need to apply the el-6-epel role before using this in order
+  # for libyaml to be available.
+  el-6-ruby200:
+    provisioners:
+      - type: shell
+        inline: |-
+          yum install -y https://www.softwarecollections.org/en/scls/rhscl/ruby200/epel-6-x86_64/download/rhscl-ruby200-epel-6-x86_64-1-2.noarch.rpm
+          yum install -y ruby200-ruby-devel
+
+          # The EOF must be quoted to prevent shell expansion.
+          tee /etc/profile.d/enable-scl-ruby.sh << "EOF"
+          # Enable ruby200 by default
+          source /opt/rh/ruby200/enable
+          # Place scripts installed by ruby193 gems on the PATH
+          export PATH=/opt/rh/ruby200/root/usr/local/bin:$PATH
+          EOF
+
+          source /opt/rh/ruby200/enable
 
           if ruby -e "begin require 'json'; rescue LoadError; exit(1); end"; then
             echo "JSON library available."
