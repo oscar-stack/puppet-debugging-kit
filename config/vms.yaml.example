@@ -1,6 +1,9 @@
 ---
 vms:
 
+  # NOTE: All `box:` declarations in this example point to vagrantcloud.com
+  # and require Vagrant 1.5.0 or newer to function.
+
   - name: pe-323-master
     box: puppetlabs/centos-6.5-64-nocm
     hostname: pe-323-master.puppetdebug.vlan
