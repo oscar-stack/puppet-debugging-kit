@@ -14,6 +14,13 @@ roles:
       - {type: shell, inline: 'service iptables stop'}
       - {type: shell, inline: 'chkconfig iptables off'}
 
+  # Adds /usr/local/bin to the PATH
+  el-fix-path:
+    provisioners:
+      - type: shell
+        inline: |
+          echo "export PATH=$PATH:/usr/local/bin" > /etc/profile.d/path_fix.sh
+
   1gb-memory:
     providers:
       - type: virtualbox

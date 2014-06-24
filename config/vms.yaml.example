@@ -11,6 +11,7 @@ vms:
       - pe-forward-console
       - pe-323-master
       - el-stop-firewall
+      - el-fix-path
       - 4gb-memory
       - base
 
@@ -20,6 +21,7 @@ vms:
     roles:
       - pe-323-agent
       - el-stop-firewall
+      - el-fix-path
       - base
 
   - name: pe-313-master
@@ -29,6 +31,7 @@ vms:
       - pe-forward-console
       - pe-313-master
       - el-stop-firewall
+      - el-fix-path
       - 4gb-memory
       - base
 
@@ -38,6 +41,7 @@ vms:
     roles:
       - pe-313-agent
       - el-stop-firewall
+      - el-fix-path
       - base
 
   - name: pe-301-master
@@ -47,6 +51,7 @@ vms:
       - pe-forward-console
       - pe-301-master
       - el-stop-firewall
+      - el-fix-path
       - 4gb-memory
       - base
 
@@ -56,6 +61,7 @@ vms:
     roles:
       - pe-301-agent
       - el-stop-firewall
+      - el-fix-path
       - base
 
   - name: pe-286-master
@@ -65,6 +71,7 @@ vms:
       - pe-forward-console
       - pe-286-master
       - el-stop-firewall
+      - el-fix-path
       - 1gb-memory
       - base
 
@@ -74,6 +81,7 @@ vms:
     roles:
       - pe-286-agent
       - el-stop-firewall
+      - el-fix-path
       - base
 
   - name: pe-272-master
@@ -83,6 +91,7 @@ vms:
       - pe-forward-console
       - pe-272-master
       - el-stop-firewall
+      - el-fix-path
       - 1gb-memory
       - base
 
@@ -92,6 +101,7 @@ vms:
     roles:
       - pe-272-agent
       - el-stop-firewall
+      - el-fix-path
       - base
 
   - name: pe-261-master
@@ -101,6 +111,7 @@ vms:
       - pe-forward-console
       - pe-261-master
       - el-stop-firewall
+      - el-fix-path
       - 1gb-memory
       - base
 
@@ -110,6 +121,7 @@ vms:
     roles:
       - pe-261-agent
       - el-stop-firewall
+      - el-fix-path
       - base
 
   - name: pe-253-master
@@ -119,6 +131,7 @@ vms:
       - pe-forward-console
       - pe-253-master
       - el-stop-firewall
+      - el-fix-path
       - 1gb-memory
       - base
 
@@ -128,6 +141,7 @@ vms:
     roles:
       - pe-253-agent
       - el-stop-firewall
+      - el-fix-path
       - base
 
   - name: pe-203-master
@@ -137,6 +151,7 @@ vms:
       - pe-forward-console
       - pe-203-master
       - el-stop-firewall
+      - el-fix-path
       - 1gb-memory
       - base
 
@@ -146,6 +161,7 @@ vms:
     roles:
       - pe-203-agent
       - el-stop-firewall
+      - el-fix-path
       - base
 
 
