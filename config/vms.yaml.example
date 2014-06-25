@@ -64,22 +64,22 @@ vms:
       - el-fix-path
       - base
 
-  - name: pe-286-master
+  - name: pe-287-master
     box: puppetlabs/centos-6.5-64-nocm
-    hostname: pe-286-master.puppetdebug.vlan
+    hostname: pe-287-master.puppetdebug.vlan
     roles:
       - pe-forward-console
-      - pe-286-master
+      - pe-287-master
       - el-stop-firewall
       - el-fix-path
       - 1gb-memory
       - base
 
-  - name: pe-286-agent
+  - name: pe-287-agent
     box: puppetlabs/centos-6.5-64-nocm
-    hostname: pe-286-agent-centos65.puppetdebug.vlan
+    hostname: pe-287-agent-centos65.puppetdebug.vlan
     roles:
-      - pe-286-agent
+      - pe-287-agent
       - el-stop-firewall
       - el-fix-path
       - base
