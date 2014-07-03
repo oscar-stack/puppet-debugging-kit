@@ -1,9 +1,22 @@
 require_relative '../logging'
 
 class PuppetDebuggingKit::Filter::DebugKit
+  # Quick and dirty representation of a version number.
+  Version = Struct.new(:major, :minor, :patch) do
+    def to_s
+      [self.major, self.minor, self.patch].join('.')
+    end
+
+    def series
+      [self.major, self.minor].join('.')
+    end
+  end
 
   def set_config(root_config)
     @root_config = root_config
+    # Return empty hash if not found.
+    @debug_kit   = root_config.delete('debug_kit') {|k| Hash.new}
+
     @logger = PuppetDebuggingKit::Logging.global_logger
   end
 
@@ -19,6 +32,10 @@ class PuppetDebuggingKit::Filter::DebugKit
   def filter_vm(vm_data)
     # If a VM definition does not have the `debug-kit` flag set, don't process
     # it.
+    #
+    # TODO: Right now this is a boolean value. Investigate allowing it to be a
+    # string or hash containing debug kit data. This would alleviate the need to
+    # overload the VM name to the point where it is cumbersome to type.
     return vm_data unless vm_data.delete('debug-kit')
 
     type, version, role = parse_name(vm_data['name'])
@@ -52,7 +69,7 @@ class PuppetDebuggingKit::Filter::DebugKit
     # inputs.
     #
     # TODO: Revisit this and decide if a more flexible scheme is needed.
-    match = name.match /([[:alpha:]]+)-([[:digit:]]+)-([[:alpha:]]+)/
+    match = name.match /([[:alpha:]]+)-([[:alnum:]]+)-([[:alpha:]]+)/
 
     # If the match failed, return nils as an error case.
     #
@@ -75,9 +92,11 @@ class PuppetDebuggingKit::Filter::DebugKit
     # parsing.
     #
     # FIXME: Needs validation and error handling.
-    min, max, *patch = version.split('')
+    major, minor, *patch = version.split('')
 
-    return [min, max, patch.join('')].join('.')
+    # FIXME: Just spitting back the patch here. Could be a number. Could be
+    # something like `nightly`. Need to validate.
+    return Version.new(major, minor, patch.join(''))
   end
 
   # Merges information extracted by this filter into the pe_bootstrap
@@ -87,14 +106,24 @@ class PuppetDebuggingKit::Filter::DebugKit
   # TODO: Currently, only handles the `pe_bootstrap` provisioner. Will
   # eventually need to expand to handle PE nightlies and Puppet Open Source.
   def puppet_provisioner(provisioner, type, version, role)
-    # If an explicit filename is set, then we don't need to add a version.
-    provisioner['version'] ||= version     if provisioner['filename'].nil?
-    provisioner['role']    ||= role.intern
+    case version.patch
+    when 'nightly'
+      # FIXME: This part is going to ge complicated. Re-write as a separate
+      # method.
+      provisioner['series'] ||= version.series
+      # FIXME: Raise error if either of these is nil.
+      provisioner['version_file'] = @debug_kit.fetch('nightlies', {}).fetch('pe', {}).fetch('version_file', nil)
+      provisioner['download_root'] = @debug_kit.fetch('nightlies', {}).fetch('pe', {}).fetch('download_root', nil)
+    else
+      # TODO: When /\d+/. Else, raise error.
+      provisioner['version'] ||= version.to_s
+    end
 
+    provisioner['role']    ||= role.intern
     case provisioner['role']
     when :agent
       # Set a default master for the agent to talk to.
-      provisioner['master'] ||= "#{type}-#{version.gsub('.','')}-master.puppetdebug.vlan"
+      provisioner['master'] ||= "#{type}-#{version.to_s.gsub('.','')}-master.puppetdebug.vlan"
     end
 
     return provisioner
