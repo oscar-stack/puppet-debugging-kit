@@ -4,6 +4,24 @@ vms:
   # NOTE: All `box:` declarations in this example point to vagrantcloud.com
   # and require Vagrant 1.5.0 or newer to function.
 
+  - name: pe-330-master
+    debug-kit: true
+    box: puppetlabs/centos-6.5-64-nocm
+    roles:
+      - pe-forward-console
+      - el-stop-firewall
+      - el-fix-path
+      - 1gb-memory
+      - base
+
+  - name: pe-330-agent
+    debug-kit: true
+    box: puppetlabs/centos-6.5-64-nocm
+    roles:
+      - el-stop-firewall
+      - el-fix-path
+      - base
+
   - name: pe-323-master
     box: puppetlabs/centos-6.5-64-nocm
     hostname: pe-323-master.puppetdebug.vlan
