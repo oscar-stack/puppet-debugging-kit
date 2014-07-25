@@ -1,6 +1,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+require_relative 'lib/puppet_debugging_kit/logging'
+
 if defined? Oscar # Do nothing if Oscar isn't loaded.
   require_relative 'lib/puppet_debugging_kit'
   PuppetDebuggingKit::PluginChecks.run
@@ -16,4 +18,6 @@ if defined? Oscar # Do nothing if Oscar isn't loaded.
   ].map{|d| File.expand_path(d, vagrant_dir)}
 
   Vagrant.configure('2', &Oscar.run(config_dirs))
+else
+  PuppetDebuggingKit::Logging.global_logger.warn 'Oscar not available. No VMs will be defined.'
 end
