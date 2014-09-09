@@ -4,7 +4,7 @@ vms:
   # NOTE: All `box:` declarations in this example point to vagrantcloud.com
   # and require Vagrant 1.5.0 or newer to function.
 
-  - name: pe-331-master
+  - name: pe-332-master
     debug-kit: true
     box: puppetlabs/centos-6.5-64-nocm
     roles:
@@ -14,7 +14,7 @@ vms:
       - 1gb-memory
       - base
 
-  - name: pe-331-agent
+  - name: pe-332-agent
     debug-kit: true
     box: puppetlabs/centos-6.5-64-nocm
     roles:
@@ -23,7 +23,7 @@ vms:
       - base
 
 
-  - name: pe-287-master
+  - name: pe-288-master
     debug-kit: true
     box: puppetlabs/centos-6.5-64-nocm
     roles:
@@ -33,7 +33,7 @@ vms:
       - 1gb-memory
       - base
 
-  - name: pe-287-agent
+  - name: pe-288-agent
     debug-kit: true
     box: puppetlabs/centos-6.5-64-nocm
     roles:
