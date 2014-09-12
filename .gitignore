@@ -3,6 +3,7 @@
 .ruby-version
 .vagrant
 Gemfile.local
+Gemfile.lock
 bin
 config/*.yaml
 src/puppetlabs

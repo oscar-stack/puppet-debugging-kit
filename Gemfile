@@ -1,10 +1,9 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-# Local additions and environment variable overrides go here.
-if File.exists? "#{__FILE__}.local"
-  eval(File.read("#{__FILE__}.local"), binding)
-end
+# Local additions and environment variable overrides can be placed in:
+#     Gemfile.local
+eval(File.read("#{__FILE__}.local"), binding) if File.exists? "#{__FILE__}.local"
 
 gem 'vagrant', :github => 'mitchellh/vagrant', :tag => 'v1.6.5'
 
