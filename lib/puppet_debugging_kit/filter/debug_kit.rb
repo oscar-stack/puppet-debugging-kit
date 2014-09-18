@@ -110,10 +110,12 @@ class PuppetDebuggingKit::Filter::DebugKit
     when 'nightly'
       # FIXME: This part is going to ge complicated. Re-write as a separate
       # method.
-      provisioner['series'] ||= version.series
-      # FIXME: Raise error if either of these is nil.
-      provisioner['version_file'] = @debug_kit.fetch('nightlies', {}).fetch('pe', {}).fetch('version_file', nil)
-      provisioner['download_root'] = @debug_kit.fetch('nightlies', {}).fetch('pe', {}).fetch('download_root', nil)
+      if provisioner['version'].nil?
+        provisioner['series'] ||= version.series
+        # FIXME: Raise error if either of these is nil.
+        provisioner['version_file'] = @debug_kit.fetch('nightlies', {}).fetch('pe', {}).fetch('version_file', nil)
+      end
+      provisioner['download_root'] ||= @debug_kit.fetch('nightlies', {}).fetch('pe', {}).fetch('download_root', nil)
     else
       # TODO: When /\d+/. Else, raise error.
       provisioner['version'] ||= version.to_s
