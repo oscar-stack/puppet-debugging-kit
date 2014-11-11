@@ -11,7 +11,7 @@ vms:
       - pe-forward-console
       - el-stop-firewall
       - el-fix-path
-      - 2gb-memory
+      - 4gb-memory
       - base
 
   - name: pe-370-agent
