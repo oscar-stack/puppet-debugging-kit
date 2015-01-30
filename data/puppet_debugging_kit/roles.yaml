@@ -9,6 +9,12 @@ roles:
     provisioners:
       - {type: hosts}
 
+  windows:
+    communicator: winrm
+    forwarded_ports:
+      - {guest: 22,   host: 2222,  auto_correct: true, id: ssh}
+      - {guest: 3389, host: 3389, auto_correct: true, id: rdp}
+
   el-stop-firewall:
     provisioners:
       - {type: shell, inline: 'service iptables stop'}
