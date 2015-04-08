@@ -14,7 +14,7 @@ group :plugins do
   gem 'oscar', '>= 0.4'
   gem 'vagrant-hosts', '>= 2.1.4' # Version required for Vagrant 1.6.x
   gem 'vagrant-auto_network'
-  gem 'vagrant-pe_build'
+  gem 'vagrant-pe_build', '>= 0.10.0'
   gem 'vagrant-config_builder'
   gem 'vagrant-vbox-snapshot'
 end
