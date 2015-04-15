@@ -17,8 +17,16 @@ roles:
 
   el-stop-firewall:
     provisioners:
-      - {type: shell, inline: 'service iptables stop'}
-      - {type: shell, inline: 'chkconfig iptables off'}
+      - type: shell
+        inline: |
+          RH_VERS=$(rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat-release))
+          if [ "$RH_VERS" -gt "6" ]; then
+            systemctl stop firewalld.service
+            systemctl disable firewalld.service
+          else
+            service iptables stop
+            chkconfig iptables off
+          fi
 
   # Adds /usr/local/bin to the PATH
   el-fix-path:
