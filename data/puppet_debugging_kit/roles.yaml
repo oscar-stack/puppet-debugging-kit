@@ -185,7 +185,7 @@ roles:
 
           case $PKG_SYS in
             yum)
-              if rpm --quiet -q puppetlabs-release; then
+              if rpm --quiet -q puppetlabs-release-pc1; then
                 echo 'Puppet Labs PC1 repo present.'
               else
                 if [ -f /etc/fedora-release ]; then
