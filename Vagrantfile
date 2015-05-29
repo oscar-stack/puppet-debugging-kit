@@ -17,7 +17,11 @@ if defined? Oscar # Do nothing if Oscar isn't loaded.
     config
   ].map{|d| File.expand_path(d, vagrant_dir)}
 
-  Vagrant.configure('2', &Oscar.run(config_dirs))
+  # The chdir ensures all relative paths expand consistently no matter where
+  # the vagrant command is run from.
+  Dir.chdir(vagrant_dir) do
+    Vagrant.configure('2', &Oscar.run(config_dirs))
+  end
 else
   PuppetDebuggingKit::Logging.global_logger.warn 'Oscar not available. No VMs will be defined.'
 end
