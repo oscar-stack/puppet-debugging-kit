@@ -173,7 +173,7 @@ roles:
   poss-pc1-repos:
     provisioners:
       - type: shell
-        path: data/puppet_debugging_kit/scripts/bootstrap-pc1.sh
+        path: data/puppet_debugging_kit/files/bootstrap-pc1.sh
 
   poss-envpuppet:
     synced_folders:
