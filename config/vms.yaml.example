@@ -9,9 +9,10 @@ vms:
     box: puppetlabs/centos-6.6-64-nocm
     roles:
       - pe-forward-console
+      - pe-memory-tuning
       - el-stop-firewall
       - el-fix-path
-      - 4gb-memory
+      - 1gb-memory
       - base
 
   - name: pe-381-agent
@@ -27,9 +28,10 @@ vms:
     box: puppetlabs/centos-6.6-64-nocm
     roles:
       - pe-forward-console
+      - pe-memory-tuning
       - el-stop-firewall
       - el-fix-path
-      - 4gb-memory
+      - 1gb-memory
       - base
 
   - name: pe-372-agent
