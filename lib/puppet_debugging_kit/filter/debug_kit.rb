@@ -84,19 +84,24 @@ class PuppetDebuggingKit::Filter::DebugKit
   end
 
   def parse_version(version)
-    # NOTE: We assume that Puppet has no min or max versions that extend into
-    # double digits. So far, this assumption is consistent with history.
-    #
     # TODO: Version will eventually include non-digit things, such as `HEAD` or
     # `nightly`, or `g<SHA>`, so this will need to expand beyond alphanumeric
     # parsing.
     #
     # FIXME: Needs validation and error handling.
-    major, minor, *patch = version.split('')
+    if m = version.match(/(\d+)(\d)(nightly)/) then
+      # Nightly build. Handles both 3x and 2015+
+      major, minor, patch = m[1..-1]
+    elsif m = version.match(/(\d{4})(\d)(\d+)/) then
+      # A 2015.2.0 release or newer.
+      major, minor, patch = m[1..-1]
+    else
+      # Fall back to 2.x/3.x behavior
+      major, minor, *patch = version.split('')
+      patch = patch.join('')
+    end
 
-    # FIXME: Just spitting back the patch here. Could be a number. Could be
-    # something like `nightly`. Need to validate.
-    return Version.new(major, minor, patch.join(''))
+    return Version.new(major, minor, patch)
   end
 
   # Merges information extracted by this filter into the pe_bootstrap
