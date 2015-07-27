@@ -215,6 +215,24 @@ roles:
             install -m 0644 /tmp/defaults.yaml /var/lib/hiera/
           fi
 
+  # Exact same as the above role, but for PE 2015.2 and newer.
+  #
+  # I hate this, but if we consolidate it into 1 role, all PE 3.x boxes break
+  # because the installer freaks out if `/etc/puppetlabs` exists.
+  pe-memory-tuning2:
+    provisioners:
+      # Upload to /tmp and then use a shell script to copy into place. This
+      # method works with remote machines.
+      - type: file
+        source: 'data/puppet_debugging_kit/files/pe-memory-tuning.yaml'
+        destination: '/tmp/common.yaml'
+      - type: shell
+        inline: |-
+          mkdir -p /etc/puppetlabs/code/environments/production/hieradata
+          if [ -e /tmp/common.yaml ]; then
+            install -m 0644 /tmp/common.yaml /etc/puppetlabs/code/environments/production/hieradata
+          fi
+
   pe-forward-console:
     forwarded_ports:
       - {guest: 443, host: 4443, auto_correct: true}
