@@ -17,7 +17,7 @@ vms:
       - pe-memory-tuning2
       - el-stop-firewall
       - el-fix-path
-      - 1gb-memory
+      - 2gb-memory
       - base
 
   - name: pe-201520-agent
@@ -36,7 +36,7 @@ vms:
       - pe-memory-tuning
       - el-stop-firewall
       - el-fix-path
-      - 1gb-memory
+      - 2gb-memory
       - base
 
   - name: pe-382-agent
@@ -55,7 +55,7 @@ vms:
       - pe-memory-tuning
       - el-stop-firewall
       - el-fix-path
-      - 1gb-memory
+      - 2gb-memory
       - base
 
   - name: pe-372-agent
@@ -73,7 +73,7 @@ vms:
       - pe-forward-console
       - el-stop-firewall
       - el-fix-path
-      - 1gb-memory
+      - 2gb-memory
       - base
 
   - name: pe-332-agent
