@@ -17,7 +17,7 @@ module PuppetDebuggingKit
 
     REQUIRED_HOSTS          = Gem::Version.new('2.1.4')
     REQUIRED_OSCAR          = Gem::Version.new('0.4.0')
-    REQUIRED_PEBUILD        = Gem::Version.new('0.11.0')
+    REQUIRED_PEBUILD        = Gem::Version.new('0.12.0')
 
     # Performs sanity checks on required plugins.
     def self.run
