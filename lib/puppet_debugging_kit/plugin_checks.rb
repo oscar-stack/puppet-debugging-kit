@@ -2,6 +2,7 @@ require 'vagrant/errors'
 require 'oscar'
 require 'vagrant-hosts'
 require 'pe_build/version'
+require 'config_builder/version'
 
 module PuppetDebuggingKit
   module PluginChecks
@@ -18,6 +19,7 @@ module PuppetDebuggingKit
     REQUIRED_HOSTS          = Gem::Version.new('2.1.4')
     REQUIRED_OSCAR          = Gem::Version.new('0.4.0')
     REQUIRED_PEBUILD        = Gem::Version.new('0.12.0')
+    REQUIRED_CONFIGBUILD    = Gem::Version.new('0.15.0')
 
     # Performs sanity checks on required plugins.
     def self.run
@@ -25,6 +27,7 @@ module PuppetDebuggingKit
       oscar_version          = Gem::Version.new(Oscar::VERSION)
       hosts_version          = Gem::Version.new(VagrantHosts::VERSION)
       pebuild_version        = Gem::Version.new(PEBuild::VERSION)
+      configbuild_version    = Gem::Version.new(ConfigBuilder::VERSION)
 
       if oscar_version < REQUIRED_OSCAR
         raise DebugKitBadVersion.new('oscar', REQUIRED_OSCAR, oscar_version)
@@ -32,6 +35,10 @@ module PuppetDebuggingKit
 
       if pebuild_version < REQUIRED_PEBUILD
         raise DebugKitBadVersion.new('vagrant-pe_build', REQUIRED_PEBUILD, pebuild_version)
+      end
+
+      if configbuild_version < REQUIRED_CONFIGBUILD
+        raise DebugKitBadVersion.new('vagrant-config_builder', REQUIRED_CONFIGBUILD, configbuild_version)
       end
 
       if vagrant_version >= Gem::Version.new('1.5.0') && hosts_version < REQUIRED_HOSTS
