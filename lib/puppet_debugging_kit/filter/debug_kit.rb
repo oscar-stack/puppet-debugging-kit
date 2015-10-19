@@ -50,12 +50,20 @@ class PuppetDebuggingKit::Filter::DebugKit
     # Ensure the VM definition has an array of provisioners
     vm_data['provisioners'] ||= []
 
-    # NOTE: Assumes `pe_bootstrap` is the only provisioner we need to work with
-    # and that there is only one copy of it attached to the machine.
-    index = vm_data['provisioners'].find_index {|p| p['type'] == 'pe_bootstrap'}
+    # NOTE: Assumes `pe_bootstrap` and `pe_agent` are the only provisioners we
+    # need to work with and that there is only one copy attached to the
+    # machine.
+    provisioner = if (role == 'agent') && (version.major.to_i >= 2015)
+      # Used for PE 2015.x and newer since tarball installers are deprecated.
+      'pe_agent'
+    else
+      'pe_bootstrap'
+    end
+
+    index = vm_data['provisioners'].find_index {|p| p['type'] == provisioner}
     if index.nil?
       # No pe_bootstrap provisioner present, add one.
-      vm_data['provisioners'].push puppet_provisioner({'type' => 'pe_bootstrap'}, type, version, role)
+      vm_data['provisioners'].push puppet_provisioner({'type' => provisioner}, type, version, role)
     else
       # Add defaults parsed from the VM name to the existing provisioner.
       vm_data['provisioners'][index] = puppet_provisioner(vm_data['provisioners'][index].dup, type, version, role)
@@ -104,13 +112,18 @@ class PuppetDebuggingKit::Filter::DebugKit
     return Version.new(major, minor, patch)
   end
 
-  # Merges information extracted by this filter into the pe_bootstrap
-  # provisioner. This operation only modifies data where there are no
-  # existing values.
+  # Merges information extracted by this filter into the pe_build provisioners.
+  # This operation only modifies data where there are no existing values.
   #
   # TODO: Currently, only handles the `pe_bootstrap` provisioner. Will
   # eventually need to expand to handle PE nightlies and Puppet Open Source.
   def puppet_provisioner(provisioner, type, version, role)
+    # For PE 2015.x agents.
+    if provisioner['type'] == 'pe_agent'
+      provisioner['master_vm'] ||= "#{type}-#{version.to_s.gsub('.','')}-master"
+      return provisioner
+    end
+
     case version.patch
     when 'nightly'
       # FIXME: This part is going to ge complicated. Re-write as a separate
