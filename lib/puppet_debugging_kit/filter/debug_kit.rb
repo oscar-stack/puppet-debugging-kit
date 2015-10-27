@@ -121,6 +121,7 @@ class PuppetDebuggingKit::Filter::DebugKit
     # For PE 2015.x agents.
     if provisioner['type'] == 'pe_agent'
       provisioner['master_vm'] ||= "#{type}-#{version.to_s.gsub('.','')}-master"
+      provisioner['version']   ||= (version.patch == 'nightly' ? 'current' : version.to_s)
       return provisioner
     end
 
