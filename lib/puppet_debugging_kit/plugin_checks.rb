@@ -8,7 +8,7 @@ module PuppetDebuggingKit
   module PluginChecks
     class DebugKitBadVersion < Vagrant::Errors::VagrantError
       def initialize(plugin, required, actual)
-        @error_message = "Outdated debugging kit dependency: #{plugin}\nMinimum required version is: #{required}\nInstalled version is: #{actual}\nTry: vagrant plugin update #{plugin}"
+        @error_message = "Outdated debugging kit dependency: #{plugin}\nMinimum required version is: #{required}\nInstalled version is: #{actual}\nTry running: vagrant plugin update"
 
         super @error_message
       end
