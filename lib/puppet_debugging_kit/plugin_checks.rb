@@ -16,7 +16,7 @@ module PuppetDebuggingKit
       def error_message; @error_message; end
     end
 
-    REQUIRED_HOSTS          = Gem::Version.new('2.1.4')
+    REQUIRED_HOSTS          = Gem::Version.new('2.6.0')
     REQUIRED_OSCAR          = Gem::Version.new('0.4.0')
     REQUIRED_PEBUILD        = Gem::Version.new('0.13.0')
     REQUIRED_CONFIGBUILD    = Gem::Version.new('0.15.0')

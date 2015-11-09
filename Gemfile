@@ -12,7 +12,7 @@ gem 'vagrant', :github => 'mitchellh/vagrant', :tag => 'v1.7.4'
 # under Bundler.
 group :plugins do
   gem 'oscar', '>= 0.4'
-  gem 'vagrant-hosts', '>= 2.1.4' # Version required for Vagrant 1.6.x
+  gem 'vagrant-hosts', '>= 2.6.0'
   gem 'vagrant-auto_network'
   gem 'vagrant-pe_build', '>= 0.13.1'
   gem 'vagrant-config_builder', '>= 0.15.0'
