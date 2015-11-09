@@ -7,7 +7,7 @@ roles:
     private_networks:
       - {auto_network: true}
     provisioners:
-      - {type: hosts}
+      - {type: hosts, add_localhost_hostnames: false, sync_hosts: true}
 
   windows:
     communicator: winrm
