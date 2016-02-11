@@ -2,7 +2,7 @@
 namespace :setup do
   desc 'Install requirements into a global Vagrant setup'
   task :global do
-    %w[oscar vagrant-vbox-snapshot].each do |plugin|
+    %w[oscar].each do |plugin|
       Kernel.system 'vagrant', 'plugin', 'install', plugin
     end
   end
