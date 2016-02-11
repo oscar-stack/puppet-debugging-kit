@@ -47,25 +47,6 @@ vms:
       - el-fix-path
       - base
 
-  - name: pe-372-master
-    debug-kit: true
-    box: puppetlabs/centos-6.6-64-nocm
-    roles:
-      - pe-forward-console
-      - pe-memory-tuning
-      - el-stop-firewall
-      - el-fix-path
-      - 2gb-memory
-      - base
-
-  - name: pe-372-agent
-    debug-kit: true
-    box: puppetlabs/centos-6.6-64-nocm
-    roles:
-      - el-stop-firewall
-      - el-fix-path
-      - base
-
   - name: pe-332-master
     debug-kit: true
     box: puppetlabs/centos-6.6-64-nocm
