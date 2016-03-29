@@ -65,14 +65,4 @@ vms:
       - el-fix-path
       - base
 
-
-  - name: poss-head-master
-    box: puppetlabs/centos-6.6-64-nocm
-    hostname: poss-head-centos.puppetdebug.vlan
-    roles:
-      - poss-envpuppet
-      - el-6-ruby193
-      - el-stop-firewall
-      - base
-
 # vim: set ft=yaml:
