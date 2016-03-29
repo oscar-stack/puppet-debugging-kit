@@ -142,6 +142,10 @@ class PuppetDebuggingKit::Filter::DebugKit
 
     provisioner['role']    ||= role.intern
     case provisioner['role']
+    when :master
+      # Starting with 2015, we use the pe_agent provisioner which handles
+      # cert signing.
+      provisioner['autosign'] ||= (version.major.to_i < 2015)
     when :agent
       # Set a default master for the agent to talk to.
       provisioner['master'] ||= "#{type}-#{version.to_s.gsub('.','')}-master.puppetdebug.vlan"
