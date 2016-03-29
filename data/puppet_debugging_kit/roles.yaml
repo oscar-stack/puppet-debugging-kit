@@ -8,6 +8,9 @@ roles:
       - {auto_network: true}
     provisioners:
       - {type: hosts, add_localhost_hostnames: false, sync_hosts: true}
+    providers:
+      - type: virtualbox
+        linked_clone: true
 
   windows:
     communicator: winrm
