@@ -21,7 +21,7 @@ if defined? Oscar # Do nothing if Oscar isn't loaded.
     config
   ].map{|d| File.expand_path(d, vagrant_dir)}
 
-  Vagrant.configure('2', &Oscar.run(config_dirs))
+  Vagrant.configure('2', &ConfigBuilder.load(:yaml_erb, :yamldir, config_dirs))
 else
   PuppetDebuggingKit::Logging.global_logger.warn 'Oscar not available. No VMs will be defined.'
 end
