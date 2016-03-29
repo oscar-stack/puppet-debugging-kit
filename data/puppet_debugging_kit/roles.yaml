@@ -4,13 +4,64 @@ roles:
   # General Purpose Roles
   # =====================
   base:
-    private_networks:
-      - {auto_network: true}
     provisioners:
-      - {type: hosts, add_localhost_hostnames: false, sync_hosts: true}
+      # A generic hosts provisioner is defined here so that networking is one
+      # of the first things configured. Other roles can hook into the
+      # 'base networking' provisioner and override settings.
+      - {type: hosts, name: 'base networking'}
     providers:
       - type: virtualbox
         linked_clone: true
+        overrides:
+          vm_defaults:
+            private_networks:
+              - {auto_network: true}
+            provisioners:
+              - type: hosts
+                name: 'base networking'
+                preserve_order: true
+                sync_hosts: true
+                add_localhost_hostnames: false
+                hosts:
+                  - ['@vagrant_private_networks', ['@vagrant_hostnames']]
+                imports: ['global', 'virtualbox', 'vmware']
+                exports:
+                  virtualbox:
+                    - ['@vagrant_private_networks', ['@vagrant_hostnames']]
+      - type: vmware_fusion
+        overrides:
+          vm_defaults:
+            private_networks:
+              - {auto_network: true}
+            provisioners:
+              - type: hosts
+                name: 'base networking'
+                preserve_order: true
+                sync_hosts: true
+                add_localhost_hostnames: false
+                hosts:
+                  - ['@vagrant_private_networks', ['@vagrant_hostnames']]
+                imports: ['global', 'virtualbox', 'vmware']
+                exports:
+                  vmware:
+                    - ['@vagrant_private_networks', ['@vagrant_hostnames']]
+      - type: vmware_workstation
+        overrides:
+          vm_defaults:
+            private_networks:
+              - {auto_network: true}
+            provisioners:
+              - type: hosts
+                name: 'base networking'
+                preserve_order: true
+                sync_hosts: true
+                add_localhost_hostnames: false
+                hosts:
+                  - ['@vagrant_private_networks', ['@vagrant_hostnames']]
+                imports: ['global', 'virtualbox', 'vmware']
+                exports:
+                  vmware:
+                    - ['@vagrant_private_networks', ['@vagrant_hostnames']]
 
   windows:
     communicator: winrm
