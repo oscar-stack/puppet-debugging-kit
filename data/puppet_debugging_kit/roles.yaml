@@ -82,6 +82,10 @@ roles:
             chkconfig iptables off
           fi
 
+          # Some templates have firewalls configured weird. Just return success.
+          exit 0
+
+
   # Adds /usr/local/bin to the PATH
   el-fix-path:
     provisioners:
