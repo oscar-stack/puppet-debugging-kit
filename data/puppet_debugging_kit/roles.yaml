@@ -73,7 +73,7 @@ roles:
     provisioners:
       - type: shell
         inline: |
-          RH_VERS=$(rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat-release))
+          RH_VERS=$(rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat-release)|grep -o '[0-9]\+')
           if [ "$RH_VERS" -gt "6" ]; then
             systemctl stop firewalld.service
             systemctl disable firewalld.service
