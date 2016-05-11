@@ -28,7 +28,7 @@ vms:
       - el-fix-path
       - base
 
-  - name: pe-384-master
+  - name: pe-385-master
     debug-kit: true
     box: puppetlabs/centos-6.6-64-nocm
     roles:
@@ -39,7 +39,7 @@ vms:
       - 2gb-memory
       - base
 
-  - name: pe-384-agent
+  - name: pe-385-agent
     debug-kit: true
     box: puppetlabs/centos-6.6-64-nocm
     roles:
