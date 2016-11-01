@@ -120,6 +120,35 @@ roles:
         vmx:
           memsize: 4096
 
+  #equivalent to 1-gb
+  small-size:
+    providers:
+      - type: virtualbox
+        customize:
+          - [modifyvm, !ruby/sym id, '--memory', 1024]
+      - type: vmware_fusion
+        vmx:
+          memsize: 1024
+
+  #equivalent to 2-gb
+  medium-size:
+    providers:
+      - type: virtualbox
+        customize:
+          - [modifyvm, !ruby/sym id, '--memory', 2048]
+      - type: vmware_fusion
+        vmx:
+          memsize: 2048
+
+  #equivalent to 4-gb
+  large-size:
+    providers:
+      - type: virtualbox
+        customize:
+          - [modifyvm, !ruby/sym id, '--memory', 4096]
+      - type: vmware_fusion
+        vmx:
+          memsize: 4096
 
   # Puppet Open Source Roles
   # ========================
