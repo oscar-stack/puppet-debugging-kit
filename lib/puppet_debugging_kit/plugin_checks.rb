@@ -1,8 +1,7 @@
+require 'rubygems'
 require 'vagrant/errors'
-require 'oscar'
-require 'vagrant-hosts'
-require 'pe_build/version'
-require 'config_builder/version'
+
+require 'oscar/version'
 
 module PuppetDebuggingKit
   module PluginChecks
@@ -16,14 +15,14 @@ module PuppetDebuggingKit
       def error_message; @error_message; end
     end
 
-    REQUIRED_OSCAR          = Gem::Version.new('0.5.0')
+    REQUIRED_OSCAR          = Gem::Requirement.new('0.5.3')
 
     # Performs sanity checks on required plugins.
     def self.run
       oscar_version          = Gem::Version.new(Oscar::VERSION)
 
-      if oscar_version < REQUIRED_OSCAR
-        raise DebugKitBadVersion.new('oscar', REQUIRED_OSCAR, oscar_version)
+      unless REQUIRED_OSCAR.satisfied_by?(oscar_version)
+        raise DebugKitBadVersion.new('oscar', REQUIRED_OSCAR.to_s, oscar_version)
       end
     end
   end

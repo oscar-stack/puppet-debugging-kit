@@ -11,5 +11,5 @@ gem 'ruby_dep', '~> 1.3.1'
 # simulates the action of `vagrant plugin`, which is inactive when running
 # under Bundler.
 group :plugins do
-  gem 'oscar', '>= 0.5'
+  gem 'oscar', '>= 0.5.3'
 end
