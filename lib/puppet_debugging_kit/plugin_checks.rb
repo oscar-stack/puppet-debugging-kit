@@ -15,7 +15,7 @@ module PuppetDebuggingKit
       def error_message; @error_message; end
     end
 
-    REQUIRED_OSCAR          = Gem::Requirement.new('0.5.3')
+    REQUIRED_OSCAR          = Gem::Requirement.new('>= 0.5.3')
 
     # Performs sanity checks on required plugins.
     def self.run
