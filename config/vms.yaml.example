@@ -11,7 +11,7 @@ vms:
   # and require Vagrant 1.5.0 or newer to function.
   - name: pe-201652-master
     debug-kit: true
-    box: puppetlabs/centos-6.6-64-nocm
+    box: puppetlabs/centos-7.2-64-nocm
     roles:
       - pe-forward-console
       - pe-memory-tuning2
@@ -22,7 +22,7 @@ vms:
 
   - name: pe-201652-agent
     debug-kit: true
-    box: puppetlabs/centos-6.6-64-nocm
+    box: puppetlabs/centos-7.2-64-nocm
     roles:
       - el-stop-firewall
       - el-fix-path
@@ -31,7 +31,7 @@ vms:
 
   - name: pe-201643-master
     debug-kit: true
-    box: puppetlabs/centos-6.6-64-nocm
+    box: puppetlabs/centos-7.2-64-nocm
     roles:
       - pe-forward-console
       - pe-memory-tuning2
@@ -42,7 +42,7 @@ vms:
 
   - name: pe-201643-agent
     debug-kit: true
-    box: puppetlabs/centos-6.6-64-nocm
+    box: puppetlabs/centos-7.2-64-nocm
     roles:
       - el-stop-firewall
       - el-fix-path
