@@ -29,7 +29,7 @@ vms:
       - base
 
 
-  - name: pe-201642-master
+  - name: pe-201643-master
     debug-kit: true
     box: puppetlabs/centos-6.6-64-nocm
     roles:
@@ -40,7 +40,7 @@ vms:
       - 2gb-memory
       - base
 
-  - name: pe-201642-agent
+  - name: pe-201643-agent
     debug-kit: true
     box: puppetlabs/centos-6.6-64-nocm
     roles:
