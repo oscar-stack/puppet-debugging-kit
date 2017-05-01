@@ -15,7 +15,7 @@ vms:
       - pe-memory-tuning2
       - el-stop-firewall
       - el-fix-path
-      - 4gb-memory
+      - medium-size
       - base
 
   - name: pe-201711-agent
@@ -35,7 +35,7 @@ vms:
       - pe-memory-tuning2
       - el-stop-firewall
       - el-fix-path
-      - 2gb-memory
+      - medium-size
       - base
 
   - name: pe-201643-agent
@@ -55,7 +55,7 @@ vms:
       - pe-memory-tuning
       - el-stop-firewall
       - el-fix-path
-      - 2gb-memory
+      - medium-size
       - base
 
   - name: pe-387-agent
