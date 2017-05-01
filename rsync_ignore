@@ -1,0 +1,4 @@
+.vagrant
+.bundle
+.git
+.pe_build
