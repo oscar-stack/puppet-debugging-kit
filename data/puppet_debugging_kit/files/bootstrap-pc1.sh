@@ -42,7 +42,7 @@ case $PKG_SYS in
       apt-get install -y curl
       curl -O "http://apt.puppetlabs.com/puppetlabs-release-pc1-$DEB_RELEASE.deb"
       dpkg -i "puppetlabs-release-pc1-$DEB_RELEASE.deb"
-      apt-get -y -f -m update
+      apt-get -y -m update
     fi
     ;;
 esac
