@@ -306,6 +306,9 @@ roles:
   #
   # I hate this, but if we consolidate it into 1 role, all PE 3.x boxes break
   # because the installer freaks out if `/etc/puppetlabs` exists.
+  #
+  # The hieradata directory is the default for Hiera 3x, (PE 2017.2.x or older)
+  # the data directory is the default for Hiera 5.x.     (PE 2017.3.x or newer)
   pe-memory-tuning2:
     provisioners:
       # Upload to /tmp and then use a shell script to copy into place. This
@@ -316,8 +319,10 @@ roles:
       - type: shell
         inline: |-
           mkdir -p /etc/puppetlabs/code/environments/production/hieradata
+          mkdir -p /etc/puppetlabs/code/environments/production/data
           if [ -e /tmp/common.yaml ]; then
             install -m 0644 /tmp/common.yaml /etc/puppetlabs/code/environments/production/hieradata
+            install -m 0644 /tmp/common.yaml /etc/puppetlabs/code/environments/production/data
           fi
 
   pe-forward-console:
