@@ -7,6 +7,26 @@ ssh:
 
 vms:
 
+  - name: pe-201810-master
+    debug-kit: true
+    box: puppetlabs/centos-7.2-64-nocm
+    roles:
+      - pe-forward-console
+      - pe-memory-tuning2
+      - el-stop-firewall
+      - el-fix-path
+      - medium-size
+      - base
+
+  - name: pe-201810-agent
+    debug-kit: true
+    box: puppetlabs/centos-7.2-64-nocm
+    roles:
+      - el-stop-firewall
+      - el-fix-path
+      - base
+
+
   - name: pe-201736-master
     debug-kit: true
     box: puppetlabs/centos-7.2-64-nocm
