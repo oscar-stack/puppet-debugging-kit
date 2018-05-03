@@ -27,26 +27,6 @@ vms:
       - base
 
 
-  - name: pe-201725-master
-    debug-kit: true
-    box: puppetlabs/centos-7.2-64-nocm
-    roles:
-      - pe-forward-console
-      - pe-memory-tuning2
-      - el-stop-firewall
-      - el-fix-path
-      - medium-size
-      - base
-
-  - name: pe-201725-agent
-    debug-kit: true
-    box: puppetlabs/centos-7.2-64-nocm
-    roles:
-      - el-stop-firewall
-      - el-fix-path
-      - base
-
-
   - name: pe-2016411-master
     debug-kit: true
     box: puppetlabs/centos-7.2-64-nocm
