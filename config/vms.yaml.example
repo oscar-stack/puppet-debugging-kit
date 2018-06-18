@@ -47,7 +47,7 @@ vms:
       - base
 
 
-  - name: pe-2016411-master
+  - name: pe-2016413-master
     debug-kit: true
     box: puppetlabs/centos-7.2-64-nocm
     roles:
@@ -58,7 +58,7 @@ vms:
       - medium-size
       - base
 
-  - name: pe-2016411-agent
+  - name: pe-2016413-agent
     debug-kit: true
     box: puppetlabs/centos-7.2-64-nocm
     roles:
