@@ -10,5 +10,5 @@ gem 'vagrant', :github => 'mitchellh/vagrant', :tag => 'v1.8.7'
 # simulates the action of `vagrant plugin`, which is inactive when running
 # under Bundler.
 group :plugins do
-  gem 'oscar', '>= 0.5.3'
+  gem 'oscar', '>= 0.5.4'
 end
