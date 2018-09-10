@@ -8,6 +8,7 @@ puppet_enterprise::profile::amq::broker::heap_mb: '96'
 # JRuby tuning is only available for PE 3.7.2 and newer. Masters running 3.7.0
 # or 3.7.1 should be given a full 4 GB of RAM to meet JRuby demands.
 puppet_enterprise::master::puppetserver::jruby_max_active_instances: 1
+puppet_enterprise::master::puppetserver:reserved_code_cache: '96m'
 puppet_enterprise::profile::master::java_args:
   Xmx: '384m'
   Xms: '128m'
