@@ -73,6 +73,9 @@ There are three roles that assist with creating PE machines:
     This role performs an agent installation of PE `<version>` on the guest VM.
     The agent is configured to contact a master running at `pe-<version>-master.puppetdebug.vlan` --- so ensure a VM with that hostname is configured and running before bringing up any agents.
 
+  - `pe-<version>-replica`:
+    This role performs an agent installation of PE `<version>` on the guest VM and configures it as an HA replica.
+    The replica is configured to contact a master running at `pe-<version>-master.puppetdebug.vlan` --- so ensure a VM with that hostname is configured and running before bringing up the replica. There can only be one replica, and this only works with 2016.5+
 
 ### POSS Specific Roles
 

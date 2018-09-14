@@ -1,0 +1,54 @@
+---
+# This stack is a simple HA environment with a Primary Master, HA Replica, and an agent
+# The result of `vagrant up` should be a fully functional HA setup that uses the default control repo
+ssh:
+  insert_key: false
+
+vms:
+  - name: pe-201814-master
+    debug-kit: true
+    box: puppetlabs/centos-7.2-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-7-x86_64'
+      - type: openstack
+        volume_boot:
+          image: 'centos_7_x86_64'
+    provisioners:
+      - type: pe_bootstrap
+        answer_extras: 
+          - '"puppet_enterprise::profile::master::code_manager_auto_configure": true'
+          - '"puppet_enterprise::profile::master::r10k_remote": "https://github.com/puppetlabs/control-repo.git"'
+    roles:
+      - pe-forward-console
+      - large-size
+      - base
+
+  - name: pe-201814-replica
+    debug-kit: true
+    box: puppetlabs/centos-7.2-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-7-x86_64'
+      - type: openstack
+        volume_boot:
+          image: 'centos_7_x86_64'
+    roles:
+      - large-size
+      - pe-forward-console
+      - base
+
+  - name: pe-201814-agent
+    debug-kit: true
+    box: puppetlabs/centos-7.2-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-7-x86_64'
+      - type: openstack
+        volume_boot:
+          image: 'centos_7_x86_64'
+    roles:
+      - small-size
+      - base
+
+# vim: set ft=yaml:
