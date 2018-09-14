@@ -1,0 +1,72 @@
+---
+# This stack is a simple Compile master environment with a Primary Master, Compile Master, and an agent
+# The result of `vagrant up` should be a provisioned environment with a compile master with the name puppet.puppetdebug.vlan
+ssh:
+  insert_key: false
+
+vms:
+  - name: pe-201814-master
+    debug-kit: true
+    box: puppetlabs/centos-7.2-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-7-x86_64'
+      - type: openstack
+        volume_boot:
+          image: 'centos_7_x86_64'
+    provisioners:
+        - type: pe_bootstrap
+          answer_extras:
+            - '"pe_install::puppet_master_dnsaltnames": ["puppet.puppetdebug.vlan","puppet"]'
+    roles:
+      - pe-forward-console
+      - medium-size
+      - base
+
+  - name: pe-201814-compile
+    debug-kit: true
+    box: puppetlabs/centos-7.2-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-7-x86_64'
+      - type: openstack
+        volume_boot:
+          image: 'centos_7_x86_64'
+    provisioners:
+      - type: shell
+        inline: |-
+            mkdir -p /etc/puppetlabs/puppet
+            printf "[main]\ndns_alt_names = puppet.puppetdebug.vlan,puppet" >> /etc/puppetlabs/puppet/puppet.conf
+
+      - type: pe_agent
+    roles:
+      - medium-size
+      - pe-forward-console
+      - dns_alt_names
+      - base
+
+  - name: pe-201814-agent
+    debug-kit: true
+    box: puppetlabs/centos-7.2-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-7-x86_64'
+      - type: openstack
+        volume_boot:
+          image: 'centos_7_x86_64'
+    roles:
+      - small-size
+      - base
+
+roles:
+  dns_alt_names:
+    provisioners:
+      - type: hosts
+        name: 'base networking'
+        exports:
+          openstack:
+            - ['@facter_ipaddress', ['puppet.puppetdebug.vlan', 'puppet']]
+          global:
+            - ['@vagrant_ssh', ['puppet.puppetdebug.vlan', 'puppet']]
+
+# vim: set ft=yaml:

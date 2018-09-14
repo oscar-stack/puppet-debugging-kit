@@ -77,6 +77,10 @@ There are three roles that assist with creating PE machines:
     This role performs an agent installation of PE `<version>` on the guest VM and configures it as an HA replica.
     The replica is configured to contact a master running at `pe-<version>-master.puppetdebug.vlan` --- so ensure a VM with that hostname is configured and running before bringing up the replica. There can only be one replica, and this only works with 2016.5+
 
+  - `pe-<version>-compile`:
+    This role performs an agent installation of PE `<version>` on the guest VM and configures it as an compile master in the `PE Master` node group.
+    The compile master is configured to contact a master running at `pe-<version>-master.puppetdebug.vlan` --- so ensure a VM with that hostname is configured and running before bringing up the compile master. This is only compatible with PE 2016+
+
 ### POSS Specific Roles
 
 There are a few roles that assist with creating VMs that run Puppet Open Source Software (POSS).
