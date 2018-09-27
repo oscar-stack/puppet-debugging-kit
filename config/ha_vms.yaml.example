@@ -8,12 +8,6 @@ vms:
   - name: pe-201814-master
     debug-kit: true
     box: puppetlabs/centos-7.2-64-nocm
-    providers:
-      - type: vsphere
-        template_name: 'cs-general/templates/centos-7-x86_64'
-      - type: openstack
-        volume_boot:
-          image: 'centos_7_x86_64'
     provisioners:
       - type: pe_bootstrap
         answer_extras: 
@@ -27,12 +21,6 @@ vms:
   - name: pe-201814-replica
     debug-kit: true
     box: puppetlabs/centos-7.2-64-nocm
-    providers:
-      - type: vsphere
-        template_name: 'cs-general/templates/centos-7-x86_64'
-      - type: openstack
-        volume_boot:
-          image: 'centos_7_x86_64'
     roles:
       - large-size
       - pe-forward-console
@@ -41,12 +29,6 @@ vms:
   - name: pe-201814-agent
     debug-kit: true
     box: puppetlabs/centos-7.2-64-nocm
-    providers:
-      - type: vsphere
-        template_name: 'cs-general/templates/centos-7-x86_64'
-      - type: openstack
-        volume_boot:
-          image: 'centos_7_x86_64'
     roles:
       - small-size
       - base
