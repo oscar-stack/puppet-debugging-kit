@@ -53,7 +53,7 @@ class PuppetDebuggingKit::Filter::DebugKit
     # NOTE: Assumes `pe_bootstrap` and `pe_agent` are the only provisioners we
     # need to work with and that there is only one copy attached to the
     # machine.
-    provisioner = if (role == 'agent') && (version.major.to_i >= 2015)
+    provisioner = if (role != 'master') && (version.major.to_i >= 2015)
       # Used for PE 2015.x and newer since tarball installers are deprecated.
       'pe_agent'
     else
@@ -120,8 +120,9 @@ class PuppetDebuggingKit::Filter::DebugKit
   def puppet_provisioner(provisioner, type, version, role)
     # For PE 2015.x agents.
     if provisioner['type'] == 'pe_agent'
-      provisioner['master_vm'] ||= "#{type}-#{version.to_s.gsub('.','')}-master"
-      provisioner['version']   ||= (version.patch == 'nightly' ? 'current' : version.to_s)
+      provisioner['master_vm']  ||= "#{type}-#{version.to_s.gsub('.','')}-master"
+      provisioner['version']    ||= (version.patch == 'nightly' ? 'current' : version.to_s)
+      provisioner['agent_type'] ||= role
       return provisioner
     end
 
@@ -149,6 +150,10 @@ class PuppetDebuggingKit::Filter::DebugKit
     when :agent
       # Set a default master for the agent to talk to.
       provisioner['master'] ||= "#{type}-#{version.to_s.gsub('.','')}-master.puppetdebug.vlan"
+    else
+      # Set a default master for the agent to talk to.
+      provisioner['master'] ||= "#{type}-#{version.to_s.gsub('.','')}-master.puppetdebug.vlan"
+      provisioner['agent_type'] ||= role
     end
 
     return provisioner
