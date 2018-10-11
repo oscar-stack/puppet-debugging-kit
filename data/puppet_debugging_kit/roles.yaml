@@ -320,9 +320,15 @@ roles:
         inline: |-
           mkdir -p /etc/puppetlabs/code/environments/production/hieradata
           mkdir -p /etc/puppetlabs/code/environments/production/data
+          # PE 2018.1 and newer run `puppet infrastructure configre` in
+          # an environment named "enterprise".
+          # FIXME: Use pe.conf instead as the "enteprise" environment is an
+          #        implementation detail that may change.
+          mkdir -p /etc/puppetlabs/code/environments/enterprise/data
           if [ -e /tmp/common.yaml ]; then
             install -m 0644 /tmp/common.yaml /etc/puppetlabs/code/environments/production/hieradata
             install -m 0644 /tmp/common.yaml /etc/puppetlabs/code/environments/production/data
+            install -m 0644 /tmp/common.yaml /etc/puppetlabs/code/environments/enterprise/data
           fi
 
   pe-forward-console:
