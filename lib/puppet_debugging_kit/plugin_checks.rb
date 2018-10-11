@@ -15,7 +15,7 @@ module PuppetDebuggingKit
       def error_message; @error_message; end
     end
 
-    REQUIRED_OSCAR          = Gem::Requirement.new('>= 0.5.4')
+    REQUIRED_OSCAR          = Gem::Requirement.new('>= 0.5.5')
     ATLAS_CUTOFF_VERSION    = Gem::Requirement.new('< 1.9.6')
 
     # Performs sanity checks on required plugins.
