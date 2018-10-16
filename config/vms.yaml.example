@@ -9,7 +9,7 @@ vms:
 
   - name: pe-201900-master
     debug-kit: true
-    box: puppetlabs/centos-7.2-64-nocm
+    box: bento/centos-7
     roles:
       - pe-forward-console
       - pe-memory-tuning2
@@ -20,7 +20,7 @@ vms:
 
   - name: pe-201900-agent
     debug-kit: true
-    box: puppetlabs/centos-7.2-64-nocm
+    box: bento/centos-7
     roles:
       - el-stop-firewall
       - el-fix-path
@@ -29,7 +29,7 @@ vms:
 
   - name: pe-201814-master
     debug-kit: true
-    box: puppetlabs/centos-7.2-64-nocm
+    box: bento/centos-7
     roles:
       - pe-forward-console
       - pe-memory-tuning2
@@ -40,7 +40,7 @@ vms:
 
   - name: pe-201814-agent
     debug-kit: true
-    box: puppetlabs/centos-7.2-64-nocm
+    box: bento/centos-7
     roles:
       - el-stop-firewall
       - el-fix-path
@@ -49,7 +49,7 @@ vms:
 
   - name: pe-2017310-master
     debug-kit: true
-    box: puppetlabs/centos-7.2-64-nocm
+    box: bento/centos-7
     roles:
       - pe-forward-console
       - pe-memory-tuning2
@@ -60,7 +60,7 @@ vms:
 
   - name: pe-2017310-agent
     debug-kit: true
-    box: puppetlabs/centos-7.2-64-nocm
+    box: bento/centos-7
     roles:
       - el-stop-firewall
       - el-fix-path
@@ -69,7 +69,7 @@ vms:
 
   - name: pe-2016415-master
     debug-kit: true
-    box: puppetlabs/centos-7.2-64-nocm
+    box: bento/centos-7
     roles:
       - pe-forward-console
       - pe-memory-tuning2
@@ -80,7 +80,7 @@ vms:
 
   - name: pe-2016415-agent
     debug-kit: true
-    box: puppetlabs/centos-7.2-64-nocm
+    box: bento/centos-7
     roles:
       - el-stop-firewall
       - el-fix-path
@@ -89,7 +89,7 @@ vms:
 
   - name: pe-387-master
     debug-kit: true
-    box: puppetlabs/centos-6.6-64-nocm
+    box: bento/centos-6
     roles:
       - pe-forward-console
       - pe-memory-tuning
@@ -100,7 +100,7 @@ vms:
 
   - name: pe-387-agent
     debug-kit: true
-    box: puppetlabs/centos-6.6-64-nocm
+    box: bento/centos-6
     roles:
       - el-stop-firewall
       - el-fix-path

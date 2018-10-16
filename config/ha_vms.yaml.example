@@ -7,7 +7,7 @@ ssh:
 vms:
   - name: pe-201814-master
     debug-kit: true
-    box: puppetlabs/centos-7.2-64-nocm
+    box: bento/centos-7
     provisioners:
       - type: pe_bootstrap
         answer_extras: 
@@ -20,7 +20,7 @@ vms:
 
   - name: pe-201814-replica
     debug-kit: true
-    box: puppetlabs/centos-7.2-64-nocm
+    box: bento/centos-7
     roles:
       - large-size
       - pe-forward-console
@@ -28,7 +28,7 @@ vms:
 
   - name: pe-201814-agent
     debug-kit: true
-    box: puppetlabs/centos-7.2-64-nocm
+    box: bento/centos-7
     roles:
       - small-size
       - base
