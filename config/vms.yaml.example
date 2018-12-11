@@ -24,6 +24,7 @@ vms:
     roles:
       - el-stop-firewall
       - el-fix-path
+      - small-size
       - base
 
 
@@ -44,6 +45,7 @@ vms:
     roles:
       - el-stop-firewall
       - el-fix-path
+      - small-size
       - base
 
 
@@ -64,6 +66,7 @@ vms:
     roles:
       - el-stop-firewall
       - el-fix-path
+      - small-size
       - base
 
 
@@ -84,6 +87,7 @@ vms:
     roles:
       - el-stop-firewall
       - el-fix-path
+      - small-size
       - base
 
 
@@ -104,6 +108,7 @@ vms:
     roles:
       - el-stop-firewall
       - el-fix-path
+      - small-size
       - base
 
 # vim: set ft=yaml:
