@@ -48,7 +48,7 @@ Use of the debugging kit consists of:
 
   - Creating a new VM definition in `config/vms.yaml`.
     The `box` component determines which Vagrant basebox will be used.
-    The default baseboxes can be found in [`data/puppet_debugging_kit/boxes.yaml`](https://github.com/puppetlabs/puppet-debugging-kit/blob/internal/data/puppet_debugging_kit/boxes.yaml).
+    The default baseboxes can be found in [`data/puppet_debugging_kit/internal/boxes.yaml`](https://github.com/puppetlabs/puppet-debugging-kit/blob/internal/data/puppet_debugging_kit/internal/boxes.yaml).
 
   - Assigning a list of "roles" that customize the VM behavior.
     The role list can be viewed as a stack in which the last entry is applied first.
