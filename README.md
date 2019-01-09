@@ -68,6 +68,8 @@ There are three roles that assist with creating PE machines:
     This role performs an all-in-one master installation of PE `<version>` on the guest VM.
     When specifying the version number, remove any separators such that `3.2.1` becomes `321`.
     The PE console is configured with username `admin@puppetlabs.com` and password `puppetlabs`.
+    
+    Note: Version numbers after PE 3.1 will be `YEAR.#` instead of `#.#` starting with `2017.1.1`
 
   - `pe-<version>-agent`:
     This role performs an agent installation of PE `<version>` on the guest VM.
