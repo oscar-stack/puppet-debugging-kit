@@ -5,7 +5,7 @@ ssh:
   insert_key: false
 
 vms:
-  - name: pe-201817-master
+  - name: pe-201818-master
     debug-kit: true
     box: bento/centos-7
     provisioners:
@@ -18,7 +18,7 @@ vms:
       - large-size
       - base
 
-  - name: pe-201817-replica
+  - name: pe-201818-replica
     debug-kit: true
     box: bento/centos-7
     roles:
@@ -26,7 +26,7 @@ vms:
       - pe-forward-console
       - base
 
-  - name: pe-201817-agent
+  - name: pe-201818-agent
     debug-kit: true
     box: bento/centos-7
     roles:
