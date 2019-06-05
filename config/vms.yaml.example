@@ -49,27 +49,6 @@ vms:
       - base
 
 
-  - name: pe-2017310-master
-    debug-kit: true
-    box: bento/centos-7
-    roles:
-      - pe-forward-console
-      - pe-memory-tuning2
-      - el-stop-firewall
-      - el-fix-path
-      - medium-size
-      - base
-
-  - name: pe-2017310-agent
-    debug-kit: true
-    box: bento/centos-7
-    roles:
-      - el-stop-firewall
-      - el-fix-path
-      - small-size
-      - base
-
-
   - name: pe-2016415-master
     debug-kit: true
     box: bento/centos-7
