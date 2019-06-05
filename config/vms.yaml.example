@@ -7,6 +7,27 @@ ssh:
 
 vms:
 
+  - name: pe-201910-master
+    debug-kit: true
+    box: bento/centos-7
+    roles:
+      - pe-forward-console
+      - pe-memory-tuning2
+      - el-stop-firewall
+      - el-fix-path
+      - medium-size
+      - base
+
+  - name: pe-201910-agent
+    debug-kit: true
+    box: bento/centos-7
+    roles:
+      - el-stop-firewall
+      - el-fix-path
+      - small-size
+      - base
+
+
   - name: pe-201903-master
     debug-kit: true
     box: bento/centos-7
