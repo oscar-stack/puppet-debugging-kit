@@ -28,7 +28,7 @@ vms:
       - base
 
 
-  - name: pe-201903-master
+  - name: pe-201904-master
     debug-kit: true
     box: bento/centos-7
     roles:
@@ -39,7 +39,7 @@ vms:
       - medium-size
       - base
 
-  - name: pe-201903-agent
+  - name: pe-201904-agent
     debug-kit: true
     box: bento/centos-7
     roles:
