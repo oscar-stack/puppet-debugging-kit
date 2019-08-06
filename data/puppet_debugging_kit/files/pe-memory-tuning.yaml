@@ -40,6 +40,6 @@ puppet_enterprise::profile::console::delayed_job_workers: 1
 puppet_enterprise::profile::database::shared_buffers: '4MB'
 #2015.3.2 and above
 puppet_enterprise::profile::orchestrator::java_args:
-  Xmx: '64m'
-  Xms: '64m'
+  Xmx: '128m'
+  Xms: '128m'
   'XX:+UseG1GC': ''
