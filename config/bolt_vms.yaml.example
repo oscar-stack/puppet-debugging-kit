@@ -1,0 +1,81 @@
+---
+# This example set uses Bolt tasks and plans to deploy the PE nodes
+# Please ensure to have bolt installed on the machine
+# Please also ensure to copy the `Puppetfile.example` to `Puppetfile` 
+# and run `vagrant bolt puppetfile install` in the root of this directory
+#
+# The PE version and parameters can be changed in the roles at the bottom
+# of this file.
+
+vm_defaults:
+  bolt:
+    run_as: root
+  box: bento/centos-7
+
+vms:
+  - name: master
+    hostname: master.puppetdebug.vlan
+    roles:
+      - pe_master
+      - medium-size
+      - base
+
+  - name: compiler
+    hostname: compiler.puppetdebug.vlan
+    roles:
+      - pe_compiler
+      - medium-size
+      - base
+
+  - name: agent
+    roles:
+      - pe_agent
+      - small-size
+      - base
+
+roles:
+  pe_agent:
+    bolt_triggers:
+      - trigger_type: :after
+        trigger_commands:
+          - :up
+          - :provision
+        command: plan
+        name: deploy_pe::provision_agent
+        params:
+          master: master
+      - trigger_type: :before
+        trigger_commands:
+          - :destroy
+        command: plan
+        name: deploy_pe::decom_agent
+        params:
+          master: master
+
+
+  pe_master:
+    provisioners:
+      - type: bolt
+        command: plan
+        name: deploy_pe::provision_master
+        params:
+          # installer_tarball: /vagrant/puppet-enterprise-2019.1.0-el-7-x86_64.tar.gz
+          version: 2019.1.1
+          pe_settings:
+            password: puppetlabs
+
+  pe_compiler:
+    provisioners:
+      - type: bolt
+        command: plan
+        name: deploy_pe::provision_compiler
+        params:
+          master: master
+    bolt_triggers:
+      - trigger_type: :before
+        trigger_commands:
+          - :destroy
+        command: plan
+        name: deploy_pe::decom_agent
+        params:
+          master: master

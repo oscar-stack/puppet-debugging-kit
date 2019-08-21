@@ -7,3 +7,6 @@ Gemfile.lock
 bin
 config/*.yaml
 src/puppetlabs
+.bolt
+modules
+Puppetfile
