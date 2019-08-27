@@ -11,5 +11,5 @@ gem 'vagrant', :git => 'https://github.com/hashicorp/vagrant.git',
 # simulates the action of `vagrant plugin`, which is inactive when running
 # under Bundler.
 group :plugins do
-  gem 'oscar', '>= 0.5.6'
+  gem 'oscar', '>= 0.6.0'
 end

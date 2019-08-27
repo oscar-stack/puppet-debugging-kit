@@ -2,3 +2,4 @@
 .bundle
 .git
 .pe_build
+.bolt

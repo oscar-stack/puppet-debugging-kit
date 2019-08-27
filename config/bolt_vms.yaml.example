@@ -33,6 +33,9 @@ vms:
       - small-size
       - base
 
+# Roles to be used with the VMs
+# Bolt Provisioner and Trigger settings deploy and install PE using plans
+# More information on the syntax and usage of bolt in this file can be found in https://github.com/oscar-stack/vagrant-bolt#config-builder
 roles:
   pe_agent:
     bolt_triggers:
@@ -58,9 +61,10 @@ roles:
       - type: bolt
         command: plan
         name: deploy_pe::provision_master
-        params:
-          # installer_tarball: /vagrant/puppet-enterprise-2019.1.0-el-7-x86_64.tar.gz
-          version: 2019.1.1
+        params: # More parameters are avilable see https://forge.puppet.com/jarretlavallee/deploy_pe/reference
+          # installer_tarball: /vagrant/puppet-enterprise-2019.1.1-el-7-x86_64.tar.gz # Local tarball in the vagrant directory
+          # download_url: http://example.com/pe/puppet-enterprise-2019.1.1-el-7-x86_64.tar.gz # Download the tarball from the specified URL
+          version: 2019.1.1 # Download the PE tarball from puppet.com
           pe_settings:
             password: puppetlabs
 
