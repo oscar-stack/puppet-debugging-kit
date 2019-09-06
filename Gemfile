@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 eval(File.read("#{__FILE__}.local"), binding) if File.exists? "#{__FILE__}.local"
 
 gem 'vagrant', :git => 'https://github.com/hashicorp/vagrant.git',
-  :tag => 'v2.2.4'
+  :tag => 'v2.2.5'
 
 # Gems listed in this group are automatically loaded by the Vagrantfile which
 # simulates the action of `vagrant plugin`, which is inactive when running
