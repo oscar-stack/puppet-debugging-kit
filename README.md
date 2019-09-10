@@ -16,9 +16,7 @@ This project provides a batteries-included Vagrant environment for debugging Pup
     * [General-Purpose Roles](#general-purpose-roles)
     * [PE-Specific Roles](#pe-specific-roles)
     * [POSS-Specific Roles](#poss-specific-roles)
-  * [Running on Platform9](#running-on-platform9)
-    * [Troubleshooting the openstack provider](#troubleshooting-the-openstack-provider)
-    * [Password troubleshooting](#password-troubleshooting)
+  * [Bolt Based Provisioning](#bolt-based-provisioning)
 * [Extending and Contributing](#extending-and-contributing)
 
 <!-- vim-markdown-toc -->
@@ -34,11 +32,14 @@ Getting the debugging kit ready for use consists of three steps:
   3. [Clone Puppet Open Source projects](#clone-puppet-open-source-projects) to
      `src/puppetlabs` _(optional)_.
 
+  4. [Install Bolt](https://puppet.com/docs/bolt/latest/bolt_installing.html) to
+      enable bolt provisioning _(optional)_.
+
 Rake tasks and templates are provided to help with all three steps.
 
 ### Install Vagrant Plugins
 
-Two methods are avaible depending on whether a global Vagrant installation,
+Two methods are available depending on whether a global Vagrant installation,
 such as provided by the official packages from
 [vagrantup.com](http://vagrantup.com), is in use:
 
@@ -89,6 +90,11 @@ Use of the debugging kit consists of:
     - The default roles can be found in
       [`data/puppet_debugging_kit/roles.yaml`][roles_yaml], and are explained
       in more detail below.
+  - Optionally using ["bolt based provisioning"](#bolt-based-provisioning)
+    - Building roles to call Bolt modules.
+    - Roles can contain triggers or provisioners to initiate plans, tasks, or commands.
+    - An example set are found in `config/bolt_vms.yaml.example`.
+    - An example Puppetfile is found in `Puppetfile.example`.
 
 
 ### Roles
@@ -178,10 +184,32 @@ There are also roles for legacy POSS software:
   - <a id="el-6-ruby200" /> **`el-6-ruby200`**: Provides Ruby 2.0.0 on EL6
     (requires the role [`el-6-epel`](#el-6-epel))
 
+### Bolt Based Provisioning
+
+Bolt modules can now be used to do the provisoning and configuration of the machines. An example set of plans have been provided in the `Puppetfile.example` which will enable provisioning a PE infrastructure. To use the bolt plans from the `Puppetfile` the following steps can be followed.
+
+  1. [Install Bolt](https://puppet.com/docs/bolt/latest/bolt_installing.html) as needed.
+  2. Copy the `Puppetfile.example` to `Puppetfile` and add any additional modules.
+  3. Install the modules with `vagrant bolt puppetfile install`.
+  4. Copy the `config/bolt_vms.yaml.example` to `config/bolt_vms.yaml`.
+  5. Update any parameters in the `roles` of the `config/bolt_vms.yaml` to specify PE versions or download locations.
+
+The example VMs in the `config/bolt_vms.yaml` use custom roles at the bottom of the file. There are roles to deploy a PE master, agent, and compiler. See the [`deploy_pe`](https://forge.puppet.com/jarretlavallee/deploy_pe) module for more parameter information.
+
+  - **pe_master**
+    Installs the PE master on the VM using the specified parameters.
+  - **pe_compiler**
+    Installs a PE compiler from the PE master.
+  - **pe_agent**
+    Installs a PE agent from the PE master.
+
+The roles define provisioners and triggers. More information on how to use the bolt triggers and provisioners can be found in the [`vagrant-bolt` documentation](https://github.com/oscar-stack/vagrant-bolt#config-builder).
+
+This is currently only for *nix vagrant hosts. Windows vagrant host compatibility is in progress in the example plans.
 
 ## Extending and Contributing
 
-The debugging kit can be thought of as a library of configuration and data for [Oscar](https://github.com/adrienthebo/oscar).
+The debugging kit can be thought of as a library of configuration and data for [Oscar](https://github.com/oscar-stack/oscar).
 Data is loaded from two sets of YAML files:
 
 ```
