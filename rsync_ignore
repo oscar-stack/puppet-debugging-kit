@@ -3,3 +3,4 @@
 .git
 .pe_build
 .bolt
+.env
