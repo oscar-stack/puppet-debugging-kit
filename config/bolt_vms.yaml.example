@@ -33,6 +33,27 @@ vms:
       - small-size
       - base
 
+  - name: foss-master
+    hostname: foss-master.puppetdebug.vlan
+    roles:
+      - foss_master
+      - medium-size
+      - base
+
+  - name: foss-compiler
+    hostname: foss-compiler.puppetdebug.vlan
+    roles:
+      - foss_compiler
+      - medium-size
+      - base
+
+  - name: foss-agent
+    hostname: foss-agent.puppetdebug.vlan
+    roles:
+      - foss_agent
+      - small-size
+      - base
+
 # Roles to be used with the VMs
 # Bolt Provisioner and Trigger settings deploy and install PE using plans
 # More information on the syntax and usage of bolt in this file can be found in https://github.com/oscar-stack/vagrant-bolt#config-builder
@@ -83,3 +104,29 @@ roles:
         name: deploy_pe::decom_agent
         params:
           master: master
+
+  foss_master:
+    provisioners:
+      - type: bolt
+        command: plan
+        name: install_puppet::provision_master
+        params:
+          master: foss-master
+
+  foss_compiler:
+    provisioners:
+      - type: bolt
+        command: plan
+        name: install_puppet::provision_compiler
+        params:
+          master: foss-master
+          compiler: foss-compiler
+
+  foss_agent:
+    provisioners:
+      - type: bolt
+        command: plan
+        name: install_puppet::provision_agent
+        params:
+          master: foss-master
+
