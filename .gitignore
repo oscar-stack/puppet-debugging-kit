@@ -10,3 +10,4 @@ src/puppetlabs
 .bolt
 modules
 Puppetfile
+.env
